@@ -5,11 +5,16 @@ public class Veiculos {
     private String tipo;
     private String estado;
     private String combustivel;
-    private double rendimento;
+    private double rendimentoDiesel;
+    private double rendimentoGasolina;
+    private double rendimentoAlcool;
     private double carga_suportada;
     private double carga_atual;
     private double velocidade_media;
     private double taxa_reducao_rendimento;
+    private double precoGasolina = 4.449;
+    private double precoAlcool = 3.499;
+    private double precoDiesel = 3.869;
 
     public Veiculos() {}
 
@@ -37,12 +42,28 @@ public class Veiculos {
         this.combustivel = combustivel;
     }
 
-    public double getRendimento() {
-        return rendimento;
+    public double getRendimentoDiesel() {
+        return rendimentoDiesel;
     }
 
-    public void setRendimento(double rendimento) {
-        this.rendimento = rendimento;
+    public void setRendimentoDiesel(double rendimentoDiesel) {
+        this.rendimentoDiesel = rendimentoDiesel;
+    }
+
+    public double getRendimentoGasolina() {
+        return rendimentoGasolina;
+    }
+
+    public void setRendimentoGasolina(double rendimentoGasolina) {
+        this.rendimentoGasolina = rendimentoGasolina;
+    }
+
+    public double getRendimentoAlcool() {
+        return rendimentoAlcool;
+    }
+
+    public void setRendimentoAlcool(double rendimentoAlcool) {
+        this.rendimentoAlcool = rendimentoAlcool;
     }
 
     public double getCarga_suportada() {
@@ -78,7 +99,19 @@ public class Veiculos {
     }
 
     public void calcula_rendimento() {
-        setRendimento(rendimento - carga_atual * taxa_reducao_rendimento);
+        if(combustivel.equals("diesel")){
+            setRendimentoDiesel(getRendimentoDiesel() - getCarga_atual()*getTaxa_reducao_rendimento());
+        }
+        else if(combustivel.equals("gasolina")){
+            setRendimentoGasolina(getRendimentoGasolina() - getCarga_atual()*getTaxa_reducao_rendimento());
+        }
+        else if(combustivel.equals("alcool")){
+            setRendimentoAlcool(getRendimentoAlcool() - getCarga_suportada()*getTaxa_reducao_rendimento());
+        }
+        else if(combustivel.equals("flex")){
+            setRendimentoGasolina(getRendimentoGasolina() - getCarga_atual()*getTaxa_reducao_rendimento());
+            setRendimentoAlcool(getRendimentoAlcool() - getCarga_suportada()*getTaxa_reducao_rendimento());
+        }
     }
 }
 

@@ -5,7 +5,9 @@ public class Moto extends Veiculos {
         setTipo("moto");
         setEstado("disponivel");
         setCombustivel("flex");
-        setRendimento(50);
+        setRendimentoDiesel(0);
+        setRendimentoGasolina(50);
+        setRendimentoAlcool(50);
         setCarga_atual(0);
         setCarga_suportada(50);
         setVelocidade_media(110);

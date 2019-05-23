@@ -5,7 +5,9 @@ public class Carro extends Veiculos {
         setTipo("carro");
         setEstado("disponivel");
         setCombustivel("flex");
-        setRendimento(50);
+        setRendimentoDiesel(0);
+        setRendimentoGasolina(50);
+        setRendimentoAlcool(50);
         setCarga_atual(0);
         setCarga_suportada(360);
         setVelocidade_media(100);

@@ -5,7 +5,9 @@ public class Carreta extends Veiculos {
         setTipo("carreta");
         setEstado("disponivel");
         setCombustivel("diesel");
-        setRendimento(8);
+        setRendimentoDiesel(8);
+        setRendimentoGasolina(0);
+        setRendimentoAlcool(0);
         setCarga_atual(0);
         setCarga_suportada(30000);
         setVelocidade_media(60);
