@@ -1,16 +1,16 @@
 package Frota;
 
-public class Moto extends Veiculos {
+public class Moto extends Veiculo_flex {
     public Moto() {
         setTipo("moto");
         setEstado("disponivel");
         setCombustivel("flex");
-        setRendimentoDiesel(0);
+        setCargaAtual(0);
+        setCargaSuportada(50);
+        setVelocidadeMedia(110);
+        setTaxaReducaoRendimentoAlcool(0.4);
+        setTaxaReducaoRendimentoGasolina(0.3);
+        setRendimentoAlcool(43);
         setRendimentoGasolina(50);
-        setRendimentoAlcool(50);
-        setCarga_atual(0);
-        setCarga_suportada(50);
-        setVelocidade_media(110);
-        setTaxa_reducao_rendimento(0.3);
     }
 }

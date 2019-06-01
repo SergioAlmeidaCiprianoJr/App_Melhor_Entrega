@@ -1,16 +1,13 @@
 package Frota;
 
-public class Van extends Veiculos{
+public class Van extends Veiculo_diesel {
     public Van() {
         setTipo("van");
         setEstado("disponivel");
         setCombustivel("diesel");
-        setRendimentoDiesel(10);
-        setRendimentoGasolina(0);
-        setRendimentoAlcool(0);
-        setCarga_atual(0);
-        setCarga_suportada(3500);
-        setVelocidade_media(80);
-        setTaxa_reducao_rendimento(0.001);
+        setCargaAtual(0);
+        setCargaSuportada(3500);
+        setVelocidadeMedia(80);
+        setTaxaReducaoRendimento(0.001);
     }
 }

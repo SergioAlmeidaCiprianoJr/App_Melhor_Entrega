@@ -5,18 +5,14 @@ public class Veiculos {
     private String tipo;
     private String estado;
     private String combustivel;
-    private double rendimentoDiesel;
-    private double rendimentoGasolina;
-    private double rendimentoAlcool;
-    private double carga_suportada;
-    private double carga_atual;
-    private double velocidade_media;
-    private double taxa_reducao_rendimento;
-    private double precoGasolina = 4.449;
-    private double precoAlcool = 3.499;
-    private double precoDiesel = 3.869;
-
-    public Veiculos() {}
+    private double rendimento;
+    private double cargaSuportada;
+    private double cargaAtual;
+    private double velocidadeMedia;
+    private double taxaReducaoRendimento;
+    private double GASOLINA = 4.4449;
+    private double ALCOOL = 3.499;
+    private double DIESEL = 3.869;
 
     public String getTipo() {
         return tipo;
@@ -42,76 +38,47 @@ public class Veiculos {
         this.combustivel = combustivel;
     }
 
-    public double getRendimentoDiesel() {
-        return rendimentoDiesel;
+    public double getRendimento() {
+        return rendimento;
     }
 
-    public void setRendimentoDiesel(double rendimentoDiesel) {
-        this.rendimentoDiesel = rendimentoDiesel;
+    public void setRendimento(double rendimento) {
+        this.rendimento = rendimento;
     }
 
-    public double getRendimentoGasolina() {
-        return rendimentoGasolina;
+    public double getCargaSuportada() {
+        return cargaSuportada;
     }
 
-    public void setRendimentoGasolina(double rendimentoGasolina) {
-        this.rendimentoGasolina = rendimentoGasolina;
+    public void setCargaSuportada(double cargaSuportada) {
+        this.cargaSuportada = cargaSuportada;
     }
 
-    public double getRendimentoAlcool() {
-        return rendimentoAlcool;
+    public double getCargaAtual() {
+        return cargaAtual;
     }
 
-    public void setRendimentoAlcool(double rendimentoAlcool) {
-        this.rendimentoAlcool = rendimentoAlcool;
+    public void setCargaAtual(double cargaAtual) {
+        this.cargaAtual = cargaAtual;
     }
 
-    public double getCarga_suportada() {
-        return carga_suportada;
+    public double getVelocidadeMedia() {
+        return velocidadeMedia;
     }
 
-    public void setCarga_suportada(double carga_suportada) {
-        this.carga_suportada = carga_suportada;
+    public void setVelocidadeMedia(double velocidadeMedia) {
+        this.velocidadeMedia = velocidadeMedia;
     }
 
-    public double getCarga_atual() {
-        return carga_atual;
+    public double getTaxaReducaoRendimento() {
+        return taxaReducaoRendimento;
     }
 
-    public void setCarga_atual(double carga_atual) {
-        this.carga_atual = carga_atual;
+    public void setTaxaReducaoRendimento(double taxaReducaoRendimento) {
+        this.taxaReducaoRendimento = taxaReducaoRendimento;
     }
 
-    public double getVelocidade_media() {
-        return velocidade_media;
-    }
-
-    public void setVelocidade_media(double velocidade_media) {
-        this.velocidade_media = velocidade_media;
-    }
-
-    public double getTaxa_reducao_rendimento() {
-        return taxa_reducao_rendimento;
-    }
-
-    public void setTaxa_reducao_rendimento(double taxa_reducao_rendimento) {
-        this.taxa_reducao_rendimento = taxa_reducao_rendimento;
-    }
-
-    public void calcula_rendimento() {
-        if(combustivel.equals("diesel")){
-            setRendimentoDiesel(getRendimentoDiesel() - getCarga_atual()*getTaxa_reducao_rendimento());
-        }
-        else if(combustivel.equals("gasolina")){
-            setRendimentoGasolina(getRendimentoGasolina() - getCarga_atual()*getTaxa_reducao_rendimento());
-        }
-        else if(combustivel.equals("alcool")){
-            setRendimentoAlcool(getRendimentoAlcool() - getCarga_suportada()*getTaxa_reducao_rendimento());
-        }
-        else if(combustivel.equals("flex")){
-            setRendimentoGasolina(getRendimentoGasolina() - getCarga_atual()*getTaxa_reducao_rendimento());
-            setRendimentoAlcool(getRendimentoAlcool() - getCarga_suportada()*getTaxa_reducao_rendimento());
-        }
+    public void calculaRendimento() {
+        setRendimento(getRendimento() - getCargaAtual() * getTaxaReducaoRendimento());
     }
 }
-
