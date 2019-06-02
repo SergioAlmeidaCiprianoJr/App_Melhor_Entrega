@@ -1,4 +1,4 @@
-package Frota;
+package MelhorEntrega;
 
 public class Veiculos {
 
@@ -10,9 +10,9 @@ public class Veiculos {
     private double cargaAtual;
     private double velocidadeMedia;
     private double taxaReducaoRendimento;
-    protected double GASOLINA = 4.4449;
-    protected double ALCOOL = 3.499;
-    protected double DIESEL = 3.869;
+    protected final double GASOLINA = 4.4449;
+    protected final double ALCOOL = 3.499;
+    protected final double DIESEL = 3.869;
 
     public Veiculos(){
         setEstado("disponivel");

@@ -1,4 +1,4 @@
-package Frota;
+package MelhorEntrega;
 
 public class Moto extends Veiculo_flex {
 

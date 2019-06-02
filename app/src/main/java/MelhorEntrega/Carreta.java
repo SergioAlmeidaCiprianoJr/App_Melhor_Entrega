@@ -1,4 +1,4 @@
-package Frota;
+package MelhorEntrega;
 
 public class Carreta extends Veiculo_diesel {
 

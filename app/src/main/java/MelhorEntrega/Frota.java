@@ -1,4 +1,4 @@
-package Frota;
+package MelhorEntrega;
 
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -9,8 +9,8 @@ import java.util.Collections;
 public class Frota {
 
     private ArrayList<Veiculos> frota;
-    private ArrayList<String> veiculosDisponiveis;
-    private ArrayList<String> veiculosTamanhoIdeais;
+    private ArrayList<String> veiculosDisponiveis = null;
+    private ArrayList<String> veiculosTamanhoIdeal = null;
     private String veiculoMenorCusto, veiculoMenorTempo;
     private Carreta carreta;
     private Van van;
@@ -29,8 +29,8 @@ public class Frota {
         return veiculosDisponiveis;
     }
 
-    public ArrayList<String> getVeiculosTamanhoIdeais() {
-        return veiculosTamanhoIdeais;
+    public ArrayList<String> getVeiculosTamanhoIdeal() {
+        return veiculosTamanhoIdeal;
     }
 
     public String getVeiculoMenorCusto() {
@@ -54,14 +54,17 @@ public class Frota {
         return existe;
     }
 
-    public void ficaIndisponivel(int veiculoEscolhido){
+    public Veiculos ficaIndisponivel(int veiculoEscolhido){
         String veiculoIdeal = veiculosDisponiveis.get(veiculoEscolhido);
+        Veiculos veiculo = frota.get(0);
         for(int i = 0; i < frota.size(); i++){
-            Veiculos veiculo = frota.get(i);
+            veiculo = frota.get(i);
             if(veiculo.getTipo().equals(veiculoIdeal) && veiculo.getEstado().equals("disponivel")) {
                 frota.get(i).setEstado("indisponivel");
+                return veiculo;
             }
         }
+        return veiculo;
     }
 
     public void adicionaVeiculosDisponiveis(String tipoVeiculo){
@@ -108,7 +111,7 @@ public class Frota {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public String verificaMenorTempo(double distancia){
+    public String verificaMenorTempo(double distancia, double tempoMaximo){
 
         ArrayList<Double> tempo = null;
         double tempoCarro = carro.calculaTempo(distancia);
@@ -123,6 +126,8 @@ public class Frota {
 
         Collections.sort(tempo);
 
+        if(tempo.get(0) > tempoMaximo) return "impossivel";
+
         if(tempo.get(0) == tempoCarro) return "carro";
         else if(tempo.get(0) ==  tempoMoto) return "moto";
         else if(tempo.get(0) == tempoCarreta) return "carreta";
@@ -131,17 +136,19 @@ public class Frota {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void verificaTamanhoIdeal(double carga){
-        if(carga < carro.getCargaSuportada()) veiculosTamanhoIdeais.add("carro");
-        if(carga < carreta.getCargaSuportada()) veiculosTamanhoIdeais.add("carreta");
-        if(carga < van.getCargaSuportada()) veiculosTamanhoIdeais.add("van");
-        if(carga < moto.getCargaSuportada()) veiculosTamanhoIdeais.add("moto");
+        if(carga < carro.getCargaSuportada()) veiculosTamanhoIdeal.add("carro");
+        if(carga < carreta.getCargaSuportada()) veiculosTamanhoIdeal.add("carreta");
+        if(carga < van.getCargaSuportada()) veiculosTamanhoIdeal.add("van");
+        if(carga < moto.getCargaSuportada()) veiculosTamanhoIdeal.add("moto");
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public void verificaVeiculoIdeal(double distancia, double carga){
+    public void verificaVeiculoIdeal(double distancia, double carga, double tempoMaximo){
+        veiculosDisponiveis.clear();
+        veiculosTamanhoIdeal.clear();
         verificaDisponibilidade();
         veiculoMenorCusto = verificaMenorCusto(distancia);
-        veiculoMenorTempo = verificaMenorTempo(distancia);
+        veiculoMenorTempo = verificaMenorTempo(distancia, tempoMaximo);
         verificaTamanhoIdeal(carga);
     }
 }

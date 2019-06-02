@@ -1,4 +1,4 @@
-package Frota;
+package MelhorEntrega;
 
 public class Veiculo_diesel extends Veiculos {
 
