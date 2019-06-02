@@ -10,9 +10,14 @@ public class Veiculos {
     private double cargaAtual;
     private double velocidadeMedia;
     private double taxaReducaoRendimento;
-    private double GASOLINA = 4.4449;
-    private double ALCOOL = 3.499;
-    private double DIESEL = 3.869;
+    protected double GASOLINA = 4.4449;
+    protected double ALCOOL = 3.499;
+    protected double DIESEL = 3.869;
+
+    public Veiculos(){
+        setEstado("disponivel");
+        setCargaAtual(0);
+    }
 
     public String getTipo() {
         return tipo;
@@ -80,5 +85,19 @@ public class Veiculos {
 
     public void calculaRendimento() {
         setRendimento(getRendimento() - getCargaAtual() * getTaxaReducaoRendimento());
+    }
+
+    public double calculaTempo(double distancia){
+        return distancia/getVelocidadeMedia();
+    }
+
+    public double calculaCusto(double distancia){
+        //ao calcular o custo considera o trajeto de ida e volta
+        double litros = distancia*2/getRendimento(), COMBUSTIVEL = 1;
+        return litros*COMBUSTIVEL;
+    }
+
+    public double calculaLucro(double porcentagemLucro, double distancia){
+        return calculaCusto(distancia)*(100-porcentagemLucro)/porcentagemLucro;
     }
 }

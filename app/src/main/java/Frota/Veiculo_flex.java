@@ -6,6 +6,11 @@ public class Veiculo_flex extends Veiculos {
     private double rendimentoGasolina;
     private double taxaReducaoRendimentoAlcool;
     private double taxaReducaoRendimentoGasolina;
+    private String combustivelMelhor;
+
+    public Veiculo_flex(){
+        setCombustivel("flex");
+    }
 
     public double getRendimentoAlcool() {
         return rendimentoAlcool;
@@ -52,5 +57,29 @@ public class Veiculo_flex extends Veiculos {
 
     public void calculaRendimentoAlcool(){
         setRendimentoAlcool(getRendimentoAlcool() - getCargaAtual()*getTaxaReducaoRendimentoAlcool());
+    }
+
+    @Override
+    public double calculaCusto(double distancia) {
+        super.calculaCusto(distancia);
+        double custoGasolina = calculaCustoGasolina(distancia), custoAlccol = calculaCustoAlcool(distancia);
+        if (custoAlccol>custoGasolina){
+            combustivelMelhor = "gasolina";
+            return custoGasolina;
+        }
+        else{
+            combustivelMelhor = "alcool";
+            return custoAlccol;
+        }
+    }
+
+    public double calculaCustoGasolina(double distancia) {
+        distancia *= 2;
+        return (distancia/getRendimentoGasolina())*GASOLINA;
+    }
+
+    public double calculaCustoAlcool(double distancia) {
+        distancia *= 2;
+        return (distancia/getRendimentoAlcool())*ALCOOL;
     }
 }

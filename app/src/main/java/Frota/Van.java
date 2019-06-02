@@ -1,6 +1,7 @@
 package Frota;
 
 public class Van extends Veiculo_diesel {
+
     public Van() {
         setTipo("van");
         setEstado("disponivel");
@@ -10,4 +11,5 @@ public class Van extends Veiculo_diesel {
         setVelocidadeMedia(80);
         setTaxaReducaoRendimento(0.001);
     }
+
 }
