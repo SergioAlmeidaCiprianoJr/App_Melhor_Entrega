@@ -17,6 +17,12 @@ public class Frota {
     private Carro carro;
     private Moto moto;
 
+    public Frota() {
+        this.frota.clear();
+        this.veiculosDisponiveis.clear();
+        this.veiculosTamanhoIdeal.clear();
+    }
+
     public ArrayList<Veiculos> getFrota() {
         return frota;
     }
