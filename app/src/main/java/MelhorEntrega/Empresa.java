@@ -4,28 +4,23 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Empresa {
 
-    private String nome;
     private Frota frota;
     private double porcentagemLucro;
-    private boolean entregaImpossivel;
-    private ArrayList<Veiculos> veiculosRealizandoEntregas;
+    private boolean entregaImpossivelTempo;
+    private boolean entregaImpossivelDisponbilidade;
+    private boolean entregaImpossivelTamanho;
+    private List<Veiculos> veiculosRealizandoEntregas;
 
     public Empresa(String nome, double porcentagemLucro) {
-        this.nome = nome;
+        this.entregaImpossivelTempo = false;
+        this.entregaImpossivelDisponbilidade = false;
+        this.entregaImpossivelTamanho = false;
         this.porcentagemLucro = porcentagemLucro;
-        this.entregaImpossivel = false;
-        this.veiculosRealizandoEntregas.clear();
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
+        this.veiculosRealizandoEntregas = new ArrayList<>();
     }
 
     public Frota getFrota() {
@@ -50,10 +45,13 @@ public class Empresa {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void realizaEntrega(double carga, double distancia, double tempoMaximo){
+        this.entregaImpossivelTempo = false;
+        this.entregaImpossivelDisponbilidade = false;
+        this.entregaImpossivelTamanho = false;
         frota.verificaVeiculoIdeal(distancia, carga, tempoMaximo);
-        if(frota.getVeiculoMenorTempo().equals("impossivel")) entregaImpossivel = true;
-        else if(frota.getVeiculosDisponiveis().isEmpty()) entregaImpossivel = true;
-        else if(frota.getVeiculosTamanhoIdeal().isEmpty()) entregaImpossivel = true;
+        if(frota.getVeiculosDisponiveis().isEmpty()) entregaImpossivelDisponbilidade = true;
+        else if(frota.getVeiculoMenorTempo().equals("impossivel")) entregaImpossivelTempo = true;
+        else if(frota.getVeiculosTamanhoIdeal().isEmpty()) entregaImpossivelTamanho = true;
     }
 
     private void confirmaEntrega(int veiculoEscolhido){

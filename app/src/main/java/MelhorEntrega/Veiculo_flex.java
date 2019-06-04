@@ -6,7 +6,7 @@ public class Veiculo_flex extends Veiculos {
     private double rendimentoGasolina;
     private double taxaReducaoRendimentoAlcool;
     private double taxaReducaoRendimentoGasolina;
-    private String combustivelMelhor;
+    private String melhorCombustivel;
 
     public Veiculo_flex(){
         setCombustivel("flex");
@@ -64,11 +64,11 @@ public class Veiculo_flex extends Veiculos {
         super.calculaCusto(distancia);
         double custoGasolina = calculaCustoGasolina(distancia), custoAlccol = calculaCustoAlcool(distancia);
         if (custoAlccol>custoGasolina){
-            combustivelMelhor = "gasolina";
+            melhorCombustivel = "gasolina";
             return custoGasolina;
         }
         else{
-            combustivelMelhor = "alcool";
+            melhorCombustivel = "alcool";
             return custoAlccol;
         }
     }
