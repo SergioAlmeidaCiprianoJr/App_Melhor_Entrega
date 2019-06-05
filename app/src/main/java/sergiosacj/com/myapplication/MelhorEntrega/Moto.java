@@ -1,4 +1,4 @@
-package MelhorEntrega;
+package sergiosacj.com.myapplication.MelhorEntrega;
 
 public class Moto extends Veiculo_flex {
 

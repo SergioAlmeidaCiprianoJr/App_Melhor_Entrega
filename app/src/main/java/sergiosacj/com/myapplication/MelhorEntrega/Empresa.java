@@ -1,10 +1,9 @@
-package MelhorEntrega;
+package sergiosacj.com.myapplication.MelhorEntrega;
 
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Empresa {
 
@@ -13,7 +12,7 @@ public class Empresa {
     private boolean entregaImpossivelTempo;
     private boolean entregaImpossivelDisponbilidade;
     private boolean entregaImpossivelTamanho;
-    private List<Veiculos> veiculosRealizandoEntregas;
+    private ArrayList<Veiculos> veiculosRealizandoEntregas;
 
     public Empresa(String nome, double porcentagemLucro) {
         this.entregaImpossivelTempo = false;
@@ -31,8 +30,8 @@ public class Empresa {
         this.frota.adicionaFrota(veiculo);
     }
 
-    public void removeFrota(Veiculos veiculo){
-        this.frota.removeFrota(veiculo);
+    public boolean removeFrota(Veiculos veiculo){
+        return this.frota.removeFrota(veiculo);
     }
 
     public double getPorcentagemLucro() {

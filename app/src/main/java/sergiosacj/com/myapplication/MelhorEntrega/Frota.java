@@ -1,4 +1,4 @@
-package MelhorEntrega;
+package sergiosacj.com.myapplication.MelhorEntrega;
 
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -27,10 +27,6 @@ public class Frota {
 
     public ArrayList<Veiculos> getFrota() {
         return frota;
-    }
-
-    public void adicionaFrota(Veiculos veiculo) {
-        this.frota.add(veiculo);
     }
 
     public ArrayList<String> getVeiculosDisponiveis() {
@@ -71,6 +67,10 @@ public class Frota {
 
     public void setValorMenorTempo(Double valorMenorTempo) {
         this.valorMenorTempo = valorMenorTempo;
+    }
+
+    public void adicionaFrota(Veiculos veiculo) {
+        this.frota.add(veiculo);
     }
 
     public boolean removeFrota(Veiculos veiculo) {
