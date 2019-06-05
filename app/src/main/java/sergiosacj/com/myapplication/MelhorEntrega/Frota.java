@@ -73,17 +73,14 @@ public class Frota {
         this.frota.add(veiculo);
     }
 
-    public boolean removeFrota(Veiculos veiculo) {
-        boolean existe = false;
+    public void removeFrota(Veiculos veiculo) {
         for(int i = 0; i < frota.size(); i++){
             Veiculos veiculoSaindo = frota.get(i);
             if(veiculoSaindo == veiculo) {
                 frota.remove(i);
-                existe = true;
                 break;
             }
         }
-        return existe;
     }
 
     public Veiculos ficaIndisponivel(int veiculoEscolhido){

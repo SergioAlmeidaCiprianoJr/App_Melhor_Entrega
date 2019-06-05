@@ -1,11 +1,26 @@
 package sergiosacj.com.myapplication.Activity;
 
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
+import sergiosacj.com.myapplication.Fragments.CadastroFragment;
+import sergiosacj.com.myapplication.Fragments.DesocupaFragment;
+import sergiosacj.com.myapplication.Fragments.EntregaFragment;
+import sergiosacj.com.myapplication.Fragments.InstrucoesFragment;
+import sergiosacj.com.myapplication.Interface.ComunicaFragments;
+import sergiosacj.com.myapplication.MelhorEntrega.Empresa;
 import sergiosacj.com.myapplication.R;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ComunicaFragments {
+
+    private CadastroFragment cadastroFragment;
+    private DesocupaFragment desocupaFragment;
+    private EntregaFragment entregaFragment;
+    private InstrucoesFragment instrucoesFragment;
+
+    private Empresa empresa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -13,6 +28,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         getSupportActionBar().setElevation(0);
+
+        cadastroFragment = new CadastroFragment();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction().replace(R.id.frameConteudo, cadastroFragment);
+        transaction.commit();
+
+    }
+
+    @Override
+    public void atualizaEmpresa(double porcentagemLucro, int numeroCarros, int numeroCarretas, int numeroMotos, int numeroVans) {
+
+        empresa.atualizaEmpresa(porcentagemLucro, numeroCarros, numeroCarretas, numeroMotos, numeroVans);
+        Toast.makeText(getApplicationContext(), "FOOOI", Toast.LENGTH_LONG);
 
     }
 }

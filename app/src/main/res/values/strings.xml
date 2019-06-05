@@ -3,4 +3,9 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="altera_carro">Valor de carro não pode ser negativo</string>
+    <string name="altera_carreta">Valor de carreta não pode ser negativo</string>
+    <string name="altera_moto">Valor de moto não pode ser negativo</string>
+    <string name="altera_van">Valor de van não pode ser negativo</string>
+    <string name="lucro_vazio">Valor de taxa de lucro não pode ficar vazio</string>
 </resources>
