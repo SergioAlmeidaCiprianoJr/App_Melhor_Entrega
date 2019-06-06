@@ -76,7 +76,7 @@ public class Frota {
     public void removeFrota(Veiculos veiculo) {
         for(int i = 0; i < frota.size(); i++){
             Veiculos veiculoSaindo = frota.get(i);
-            if(veiculoSaindo == veiculo) {
+            if(veiculoSaindo.getTipo() == veiculo.getTipo()) {
                 frota.remove(i);
                 break;
             }

@@ -11,8 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import sergiosacj.com.myapplication.Interface.ComunicaFragments;
 import sergiosacj.com.myapplication.R;
 
 public class CadastroFragment extends Fragment {
@@ -30,10 +28,9 @@ public class CadastroFragment extends Fragment {
     private TextView quantidadeMotos;
     private TextView quantidadeVans;
 
-    private ComunicaFragments comunicaFragments;
-
-    public CadastroFragment() {
-        // Required empty public constructor
+    private CadastroListener comunicaCadastroFragments;
+    public interface CadastroListener{
+        public void atualizaEmpresa(Double porcentagemLucro, int numeroCarros, int numeroCarretas, int numeroMotos, int numeroVans);
     }
 
 
@@ -68,16 +65,24 @@ public class CadastroFragment extends Fragment {
         confirmaAlteracoes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!verificaTaxaLucro()){
-                    comunicaFragments.atualizaEmpresa(
-                            Double.parseDouble(taxaLucro.getText().toString()),
-                            Integer.parseInt(quantidadeCarros.getText().toString()),
-                            Integer.parseInt(quantidadeCarretas.getText().toString()),
-                            Integer.parseInt(quantidadeMotos.getText().toString()),
-                            Integer.parseInt(quantidadeVans.getText().toString())
+                Double Lucro = Double.parseDouble(taxaLucro.getText().toString());
+                Integer carro = Integer.parseInt(quantidadeCarros.getText().toString());
+                if(carro == null) carro = 0;
+                Integer carreta = Integer.parseInt(quantidadeCarretas.getText().toString());
+                if(carreta == null) carreta = 0;
+                Integer moto = Integer.parseInt(quantidadeMotos.getText().toString());
+                if(moto == null) moto = 0;
+                Integer van = Integer.parseInt(quantidadeVans.getText().toString());
+                if(van == null) van = 0;
+                if(verificaTaxaLucro()){
+                    comunicaCadastroFragments.atualizaEmpresa(
+                            Lucro,
+                            carro,
+                            carreta,
+                            moto,
+                            van
                     );
                 }
-                else Toast.makeText(getContext(), getString(R.string.lucro_vazio), Toast.LENGTH_LONG);
             }
         });
 
@@ -88,15 +93,15 @@ public class CadastroFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
 
-        try
-        {
-            comunicaFragments = (ComunicaFragments) context;
+        try{
+            comunicaCadastroFragments = (CadastroListener) context;
         }
-        catch (Exception e)
-        {
+        catch (Exception e){
             throw new ClassCastException(context.toString()
-                    + " Deve implementar ComunicaFragments");
+                    + " Deve implementar CadastroListener");
+
         }
+
 
     }
 

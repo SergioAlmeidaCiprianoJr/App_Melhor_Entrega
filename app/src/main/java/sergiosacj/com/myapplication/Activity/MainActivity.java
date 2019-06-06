@@ -3,17 +3,14 @@ package sergiosacj.com.myapplication.Activity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Toast;
-
 import sergiosacj.com.myapplication.Fragments.CadastroFragment;
 import sergiosacj.com.myapplication.Fragments.DesocupaFragment;
 import sergiosacj.com.myapplication.Fragments.EntregaFragment;
 import sergiosacj.com.myapplication.Fragments.InstrucoesFragment;
-import sergiosacj.com.myapplication.Interface.ComunicaFragments;
 import sergiosacj.com.myapplication.MelhorEntrega.Empresa;
 import sergiosacj.com.myapplication.R;
 
-public class MainActivity extends AppCompatActivity implements ComunicaFragments {
+public class MainActivity extends AppCompatActivity implements CadastroFragment.CadastroListener{
 
     private CadastroFragment cadastroFragment;
     private DesocupaFragment desocupaFragment;
@@ -35,11 +32,11 @@ public class MainActivity extends AppCompatActivity implements ComunicaFragments
 
     }
 
+
     @Override
-    public void atualizaEmpresa(double porcentagemLucro, int numeroCarros, int numeroCarretas, int numeroMotos, int numeroVans) {
+    public void atualizaEmpresa(Double porcentagemLucro, int numeroCarros, int numeroCarretas, int numeroMotos, int numeroVans) {
 
         empresa.atualizaEmpresa(porcentagemLucro, numeroCarros, numeroCarretas, numeroMotos, numeroVans);
-        Toast.makeText(getApplicationContext(), "FOOOI", Toast.LENGTH_LONG);
 
     }
 }

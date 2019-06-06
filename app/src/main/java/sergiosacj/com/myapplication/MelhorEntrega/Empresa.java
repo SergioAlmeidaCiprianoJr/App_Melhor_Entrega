@@ -12,7 +12,7 @@ public class Empresa {
     private int numeroCarretas;
     private int numeroMotos;
     private int numeroVans;
-    private double porcentagemLucro;
+    private Double porcentagemLucro;
     private boolean entregaImpossivelTempo;
     private boolean entregaImpossivelDisponbilidade;
     private boolean entregaImpossivelTamanho;
@@ -24,9 +24,13 @@ public class Empresa {
         this.entregaImpossivelTamanho = false;
         this.veiculosRealizandoEntregas = new ArrayList<>();
         this.frota = new Frota();
+        this.numeroCarros = 0;
+        this.numeroCarretas = 0;
+        this.numeroMotos = 0;
+        this.numeroVans = 0;
     }
 
-    public void atualizaEmpresa(double porcentagemLucro, int numeroCarros, int numeroCarretas, int numeroMotos, int numeroVans){
+    public void atualizaEmpresa(Double porcentagemLucro, int numeroCarros, int numeroCarretas, int numeroMotos, int numeroVans){
         this.porcentagemLucro = porcentagemLucro;
         Carro carro = new Carro();
         Carreta carreta = new Carreta();
@@ -37,7 +41,7 @@ public class Empresa {
             adicionaFrota(carro, numeroCarros);
             this.numeroCarros = numeroCarros;
         }
-        else {
+        else if(numeroCarros < this.numeroCarros){
             removeFrota(carro, numeroCarros);
             this.numeroCarros -= numeroCarros;
         }
@@ -46,7 +50,7 @@ public class Empresa {
             adicionaFrota(carreta, numeroCarretas);
             this.numeroCarretas = numeroCarretas;
         }
-        else {
+        else if(numeroCarretas < this.numeroCarretas){
             removeFrota(carreta, numeroCarretas);
             this.numeroCarretas -= numeroCarretas;
         }
@@ -55,7 +59,7 @@ public class Empresa {
             adicionaFrota(moto, numeroMotos);
             this.numeroMotos = numeroMotos;
         }
-        else {
+        else if(numeroMotos < this.numeroMotos){
             removeFrota(moto, numeroMotos);
             this.numeroMotos -= numeroMotos;
         }
@@ -64,7 +68,7 @@ public class Empresa {
             adicionaFrota(van, numeroVans);
             this.numeroVans = numeroVans;
         }
-        else {
+        else if(numeroVans < this.numeroVans){
             removeFrota(van, numeroVans);
             this.numeroVans -= numeroVans;
         }
