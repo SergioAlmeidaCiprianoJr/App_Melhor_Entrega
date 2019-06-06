@@ -65,22 +65,13 @@ public class CadastroFragment extends Fragment {
         confirmaAlteracoes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Double Lucro = Double.parseDouble(taxaLucro.getText().toString());
-                Integer carro = Integer.parseInt(quantidadeCarros.getText().toString());
-                if(carro == null) carro = 0;
-                Integer carreta = Integer.parseInt(quantidadeCarretas.getText().toString());
-                if(carreta == null) carreta = 0;
-                Integer moto = Integer.parseInt(quantidadeMotos.getText().toString());
-                if(moto == null) moto = 0;
-                Integer van = Integer.parseInt(quantidadeVans.getText().toString());
-                if(van == null) van = 0;
                 if(verificaTaxaLucro()){
                     comunicaCadastroFragments.atualizaEmpresa(
-                            Lucro,
-                            carro,
-                            carreta,
-                            moto,
-                            van
+                            Double.parseDouble(taxaLucro.getText().toString()),
+                            Integer.parseInt(quantidadeCarros.getText().toString()),
+                            Integer.parseInt(quantidadeCarretas.getText().toString()),
+                            Integer.parseInt(quantidadeMotos.getText().toString()),
+                            Integer.parseInt(quantidadeVans.getText().toString())
                     );
                 }
             }
@@ -93,15 +84,7 @@ public class CadastroFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
 
-        try{
-            comunicaCadastroFragments = (CadastroListener) context;
-        }
-        catch (Exception e){
-            throw new ClassCastException(context.toString()
-                    + " Deve implementar CadastroListener");
-
-        }
-
+        comunicaCadastroFragments = (CadastroListener) context;
 
     }
 

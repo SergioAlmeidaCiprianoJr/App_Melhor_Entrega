@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity implements CadastroFragment.
     private EntregaFragment entregaFragment;
     private InstrucoesFragment instrucoesFragment;
 
-    private Empresa empresa;
+    private Empresa empresa = new Empresa();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

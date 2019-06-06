@@ -83,12 +83,12 @@ public class Empresa {
 
         int veiculosParaAdicionar;
 
-        if(veiculo.getTipo().equals("carro")) veiculosParaAdicionar = this.numeroCarros - numeroVeiculos;
-        else if(veiculo.getTipo().equals("carreta")) veiculosParaAdicionar = this.numeroCarretas - numeroVeiculos;
-        else if(veiculo.getTipo().equals("moto")) veiculosParaAdicionar = this.numeroMotos - numeroVeiculos;
-        else veiculosParaAdicionar = this.numeroVans - numeroVeiculos;
+        if(veiculo.getTipo().equals("carro")) veiculosParaAdicionar = numeroVeiculos - this.numeroCarros;
+        else if(veiculo.getTipo().equals("carreta")) veiculosParaAdicionar = numeroVeiculos - this.numeroCarretas;
+        else if(veiculo.getTipo().equals("moto")) veiculosParaAdicionar = numeroVeiculos - this.numeroMotos;
+        else veiculosParaAdicionar = numeroVeiculos - this.numeroVans;
 
-        while(veiculosParaAdicionar!=0){
+        while(veiculosParaAdicionar>0){
             this.frota.adicionaFrota(veiculo);
             veiculosParaAdicionar--;
         }
