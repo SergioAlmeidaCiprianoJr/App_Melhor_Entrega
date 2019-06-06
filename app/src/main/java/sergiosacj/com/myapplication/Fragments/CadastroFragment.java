@@ -81,6 +81,7 @@ public class CadastroFragment extends Fragment {
                             Integer.parseInt(quantidadeMotos.getText().toString()),
                             Integer.parseInt(quantidadeVans.getText().toString())
                     );
+                    Toast.makeText(getContext(), "Confirmado", Toast.LENGTH_SHORT).show();
                 }
             }
         });

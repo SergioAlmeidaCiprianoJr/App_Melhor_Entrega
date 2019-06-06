@@ -2,7 +2,9 @@ package sergiosacj.com.myapplication;
 
 public interface ComunicaFragments {
 
-    public void atualizaEmpresa(Double porcentagemLucro, int numeroCarros, int numeroCarretas, int numeroMotos, int numeroVans);
+    void atualizaEmpresa(Double porcentagemLucro, int numeroCarros, int numeroCarretas, int numeroMotos, int numeroVans);
+
+    void realizaEntrega(double pesoCarga, double distancia, double tempoMaximo);
 
     //public void enviaDadosCadastro();
 }

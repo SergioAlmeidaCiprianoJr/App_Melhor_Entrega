@@ -23,6 +23,10 @@ public class Frota {
         this.frota = new ArrayList<>();
         this.veiculosDisponiveis = new ArrayList<>();
         this.veiculosTamanhoIdeal = new ArrayList<>();
+        this.carreta = new Carreta();
+        this.carro = new Carro();
+        this.moto = new Moto();
+        this.van = new Van();
     }
 
     public ArrayList<Veiculos> getFrota() {

@@ -142,7 +142,7 @@ public class Empresa {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    private void realizaEntrega(double carga, double distancia, double tempoMaximo){
+    public void realizaEntrega(double carga, double distancia, double tempoMaximo){
         this.entregaImpossivelTempo = false;
         this.entregaImpossivelDisponbilidade = false;
         this.entregaImpossivelTamanho = false;
@@ -152,7 +152,7 @@ public class Empresa {
         else if(frota.getVeiculosTamanhoIdeal().isEmpty()) entregaImpossivelTamanho = true;
     }
 
-    private void confirmaEntrega(int veiculoEscolhido){
+    public void confirmaEntrega(int veiculoEscolhido){
         veiculosRealizandoEntregas.add(frota.ficaIndisponivel(veiculoEscolhido));
     }
 }
