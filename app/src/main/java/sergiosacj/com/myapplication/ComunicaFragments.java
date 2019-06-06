@@ -6,5 +6,5 @@ public interface ComunicaFragments {
 
     void realizaEntrega(double pesoCarga, double distancia, double tempoMaximo);
 
-    public void enviaDadosCadastro();
+    void enviaDadosCadastro();
 }
