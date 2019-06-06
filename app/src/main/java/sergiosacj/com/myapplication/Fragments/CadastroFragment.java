@@ -30,16 +30,23 @@ public class CadastroFragment extends Fragment {
     private TextView quantidadeMotos;
     private TextView quantidadeVans;
 
+    private double porcentagemLucro;
+    private int numeroCarros;
+    private int numeroCarretas;
+    private int numeroMotos;
+    private int numeroVans;
+
     private ComunicaFragments comunicaCadastroFragments;
 
-    /*
     public void recebeDados(Double porcentagemLucro, int numeroCarros, int numeroCarretas, int numeroMotos, int numeroVans){
-        taxaLucro.setText(String.valueOf(porcentagemLucro));
-        quantidadeCarros.setText(String.valueOf(numeroCarros));
-        quantidadeCarretas.setText(String.valueOf(numeroCarretas));
-        quantidadeMotos.setText(String.valueOf(numeroMotos));
-        quantidadeVans.setText(String.valueOf(numeroVans));
-    }*/
+
+        this.porcentagemLucro = porcentagemLucro;
+        this.numeroCarros = numeroCarros;
+        this.numeroCarretas = numeroCarretas;
+        this.numeroMotos = numeroMotos;
+        this.numeroVans = numeroVans;
+
+    }
 
 
     @Override
@@ -65,6 +72,12 @@ public class CadastroFragment extends Fragment {
         quantidadeMotos = view.findViewById(R.id.quantidadeMoto);
         quantidadeVans = view.findViewById(R.id.quantidadeVan);
 
+        taxaLucro.setText(String.valueOf(porcentagemLucro));
+        quantidadeCarros.setText(String.valueOf(numeroCarros));
+        quantidadeCarretas.setText(String.valueOf(numeroCarretas));
+        quantidadeMotos.setText(String.valueOf(numeroMotos));
+        quantidadeVans.setText(String.valueOf(numeroVans));
+
         alteraCarros(view);
         alteraCarretas(view);
         alteraMotos(view);
@@ -82,6 +95,9 @@ public class CadastroFragment extends Fragment {
                             Integer.parseInt(quantidadeVans.getText().toString())
                     );
                     Toast.makeText(getContext(), "Confirmado", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(getContext(), "Preencha a taxa de lucro corretamente", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -101,6 +117,9 @@ public class CadastroFragment extends Fragment {
         if(taxaLucro.getText().toString().isEmpty()){
             return false;
         }
+        else if(Double.parseDouble(taxaLucro.getText().toString()) > 99 || Double.parseDouble(taxaLucro.getText().toString()) < 0){
+            return false;
+        }
         else return true;
     }
 
@@ -109,14 +128,14 @@ public class CadastroFragment extends Fragment {
         aumentaCarros.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int valorCarros = Integer.parseInt(quantidadeCarros.getText().toString());
-                valorCarros++;
-                if(valorCarros<0){
+                numeroCarros = Integer.parseInt(quantidadeCarros.getText().toString());
+                numeroCarros++;
+                if(numeroCarros<0){
                     Toast.makeText(getContext(), getString(R.string.altera_carro), Toast.LENGTH_LONG).show();
                     quantidadeCarros.setText(String.valueOf(0));
                 }
                 else{
-                    quantidadeCarros.setText(String.valueOf(valorCarros));
+                    quantidadeCarros.setText(String.valueOf(numeroCarros));
                 }
             }
         });
@@ -124,14 +143,14 @@ public class CadastroFragment extends Fragment {
         diminuiCarros.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int valorCarros = Integer.parseInt(quantidadeCarros.getText().toString());
-                valorCarros--;
-                if(valorCarros<0){
+                numeroCarros = Integer.parseInt(quantidadeCarros.getText().toString());
+                numeroCarros--;
+                if(numeroCarros<0){
                     Toast.makeText(getContext(), getString(R.string.altera_carro), Toast.LENGTH_LONG).show();
                     quantidadeCarros.setText(String.valueOf(0));
                 }
                 else{
-                    quantidadeCarros.setText(String.valueOf(valorCarros));
+                    quantidadeCarros.setText(String.valueOf(numeroCarros));
                 }
             }
         });
@@ -142,14 +161,14 @@ public class CadastroFragment extends Fragment {
         aumentaCarretas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int valorCarretas = Integer.parseInt(quantidadeCarretas.getText().toString());
-                valorCarretas++;
-                if(valorCarretas<0){
+                numeroCarretas = Integer.parseInt(quantidadeCarretas.getText().toString());
+                numeroCarretas++;
+                if(numeroCarretas<0){
                     Toast.makeText(getContext(), getString(R.string.altera_carreta), Toast.LENGTH_LONG).show();
                     quantidadeCarretas.setText(String.valueOf(0));
                 }
                 else{
-                    quantidadeCarretas.setText(String.valueOf(valorCarretas));
+                    quantidadeCarretas.setText(String.valueOf(numeroCarretas));
                 }
             }
         });
@@ -157,14 +176,14 @@ public class CadastroFragment extends Fragment {
         diminuiCarretas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int valorCarretas = Integer.parseInt(quantidadeCarretas.getText().toString());
-                valorCarretas--;
-                if(valorCarretas<0){
+                numeroCarretas = Integer.parseInt(quantidadeCarretas.getText().toString());
+                numeroCarretas--;
+                if(numeroCarretas<0){
                     Toast.makeText(getContext(), getString(R.string.altera_carreta), Toast.LENGTH_LONG).show();
                     quantidadeCarretas.setText(String.valueOf(0));
                 }
                 else{
-                    quantidadeCarretas.setText(String.valueOf(valorCarretas));
+                    quantidadeCarretas.setText(String.valueOf(numeroCarretas));
                 }
             }
         });
@@ -175,14 +194,14 @@ public class CadastroFragment extends Fragment {
         aumentaMotos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int valorMotos = Integer.parseInt(quantidadeMotos.getText().toString());
-                valorMotos++;
-                if(valorMotos<0){
+                numeroMotos = Integer.parseInt(quantidadeMotos.getText().toString());
+                numeroMotos++;
+                if(numeroMotos<0){
                     Toast.makeText(getContext(), getString(R.string.altera_moto), Toast.LENGTH_LONG).show();
                     quantidadeMotos.setText(String.valueOf(0));
                 }
                 else{
-                    quantidadeMotos.setText(String.valueOf(valorMotos));
+                    quantidadeMotos.setText(String.valueOf(numeroMotos));
                 }
             }
         });
@@ -190,14 +209,14 @@ public class CadastroFragment extends Fragment {
         diminuiMotos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int valorMotos = Integer.parseInt(quantidadeMotos.getText().toString());
-                valorMotos--;
-                if(valorMotos<0){
+                numeroMotos = Integer.parseInt(quantidadeMotos.getText().toString());
+                numeroMotos--;
+                if(numeroMotos<0){
                     Toast.makeText(getContext(), getString(R.string.altera_moto), Toast.LENGTH_LONG).show();
                     quantidadeMotos.setText(String.valueOf(0));
                 }
                 else{
-                    quantidadeMotos.setText(String.valueOf(valorMotos));
+                    quantidadeMotos.setText(String.valueOf(numeroMotos));
                 }
             }
         });
@@ -208,14 +227,14 @@ public class CadastroFragment extends Fragment {
         aumentaVans.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int valorVans = Integer.parseInt(quantidadeVans.getText().toString());
-                valorVans++;
-                if(valorVans<0){
+                numeroVans = Integer.parseInt(quantidadeVans.getText().toString());
+                numeroVans++;
+                if(numeroVans<0){
                     Toast.makeText(getContext(), getString(R.string.altera_van), Toast.LENGTH_LONG).show();
                     quantidadeVans.setText(String.valueOf(0));
                 }
                 else{
-                    quantidadeVans.setText(String.valueOf(valorVans));
+                    quantidadeVans.setText(String.valueOf(numeroVans));
                 }
             }
         });
@@ -223,14 +242,14 @@ public class CadastroFragment extends Fragment {
         diminuiVans.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int valorVans = Integer.parseInt(quantidadeVans.getText().toString());
-                valorVans--;
-                if(valorVans<0){
+                numeroVans = Integer.parseInt(quantidadeVans.getText().toString());
+                numeroVans--;
+                if(numeroVans<0){
                     Toast.makeText(getContext(), getString(R.string.altera_van), Toast.LENGTH_LONG).show();
                     quantidadeVans.setText(String.valueOf(0));
                 }
                 else{
-                    quantidadeVans.setText(String.valueOf(valorVans));
+                    quantidadeVans.setText(String.valueOf(numeroVans));
                 }
             }
         });
