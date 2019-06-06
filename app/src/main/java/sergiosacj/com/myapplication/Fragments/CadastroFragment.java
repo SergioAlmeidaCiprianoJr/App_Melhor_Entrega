@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import sergiosacj.com.myapplication.ComunicaFragments;
 import sergiosacj.com.myapplication.R;
 
 public class CadastroFragment extends Fragment {
@@ -28,10 +30,16 @@ public class CadastroFragment extends Fragment {
     private TextView quantidadeMotos;
     private TextView quantidadeVans;
 
-    private CadastroListener comunicaCadastroFragments;
-    public interface CadastroListener{
-        public void atualizaEmpresa(Double porcentagemLucro, int numeroCarros, int numeroCarretas, int numeroMotos, int numeroVans);
-    }
+    private ComunicaFragments comunicaCadastroFragments;
+
+    /*
+    public void recebeDados(Double porcentagemLucro, int numeroCarros, int numeroCarretas, int numeroMotos, int numeroVans){
+        taxaLucro.setText(String.valueOf(porcentagemLucro));
+        quantidadeCarros.setText(String.valueOf(numeroCarros));
+        quantidadeCarretas.setText(String.valueOf(numeroCarretas));
+        quantidadeMotos.setText(String.valueOf(numeroMotos));
+        quantidadeVans.setText(String.valueOf(numeroVans));
+    }*/
 
 
     @Override
@@ -84,7 +92,7 @@ public class CadastroFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
 
-        comunicaCadastroFragments = (CadastroListener) context;
+        comunicaCadastroFragments = (ComunicaFragments) context;
 
     }
 

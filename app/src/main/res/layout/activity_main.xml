@@ -77,7 +77,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <FrameLayout
-        android:id="@+id/frameConteudo"
+        android:id="@+id/frameCadastro"
         android:layout_width="395dp"
         android:layout_height="667dp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -11,8 +11,8 @@ public class Frota {
     private ArrayList<Veiculos> frota;
     private ArrayList<String> veiculosDisponiveis;
     private ArrayList<String> veiculosTamanhoIdeal;
-    private String veiculoMenorCusto, veiculoMenorTempo;
-    private Double valorMenorCusto, valorMenorTempo;
+    private String veiculoMenorCusto, veiculoMenorTempo, veiculoMelhorCustoBeneficio;
+    private Double valorMenorCusto, valorMenorTempo, valorMelhorCustoBeneficio;
     private Carreta carreta;
     private Van van;
     private Carro carro;
@@ -67,6 +67,22 @@ public class Frota {
 
     public void setValorMenorTempo(Double valorMenorTempo) {
         this.valorMenorTempo = valorMenorTempo;
+    }
+
+    public String getVeiculoMelhorCustoBeneficio() {
+        return veiculoMelhorCustoBeneficio;
+    }
+
+    public void setVeiculoMelhorCustoBeneficio(String veiculoMelhorCustoBeneficio) {
+        this.veiculoMelhorCustoBeneficio = veiculoMelhorCustoBeneficio;
+    }
+
+    public Double getValorMelhorCustoBeneficio() {
+        return valorMelhorCustoBeneficio;
+    }
+
+    public void setValorMelhorCustoBeneficio(Double valorMelhorCustoBeneficio) {
+        this.valorMelhorCustoBeneficio = valorMelhorCustoBeneficio;
     }
 
     public void adicionaFrota(Veiculos veiculo) {
@@ -124,62 +140,78 @@ public class Frota {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public Double verificaMenorCusto(double distancia, double tempoMaximo){
+    public void verificaCustoBeneficio(double distancia, double tempoMaximo){
 
 
         ArrayList<Double> custo  = new ArrayList<>();
+        ArrayList<Double> custoBeneficio = new ArrayList<>();
+        ArrayList<Double> tempo  = new ArrayList<>();
         double custoCarro = carro.calculaCusto(distancia);
         double custoCarreta = carreta.calculaCusto(distancia);
         double custoMoto = moto.calculaCusto(distancia);
         double custoVan = van.calculaCusto(distancia);
 
-        if(carretaVerificada && (carreta.calculaTempo(distancia) <= tempoMaximo)) custo.add(custoCarreta);
-        if(carroVerificado && (carro.calculaTempo(distancia) <= tempoMaximo)) custo.add(custoCarro);
-        if(motoVerificada && (moto.calculaTempo(distancia) <= tempoMaximo)) custo.add(custoMoto);
-        if(vanVerificada && (van.calculaTempo(distancia) <= tempoMaximo)) custo.add(custoVan);
-
-        if(!custo.isEmpty()) {
-
-            Collections.sort(custo);
-
-            if (custo.get(0) == custoCarro) setVeiculoMenorCusto("carro");
-            else if (custo.get(0) == custoMoto) setVeiculoMenorCusto("moto");
-            else if (custo.get(0) == custoCarreta) setVeiculoMenorCusto("carreta");
-            else setVeiculoMenorCusto("van");
-
-            return custo.get(0);
-
-        }
-        else return 0.0;
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    public Double verificaMenorTempo(double distancia, double tempoMaximo){
-
-        ArrayList<Double> tempo  = new ArrayList<>();
         double tempoCarro = carro.calculaTempo(distancia);
         double tempoCarreta = carreta.calculaTempo(distancia);
         double tempoMoto = moto.calculaTempo(distancia);
         double tempoVan = van.calculaTempo(distancia);
 
-        if(tempoCarreta <= tempoMaximo) tempo.add(tempoCarreta);
-        if(tempoCarro  <= tempoMaximo) tempo.add(tempoCarro);
-        if(tempoMoto  <= tempoMaximo) tempo.add(tempoMoto);
-        if(tempoVan <= tempoMaximo) tempo.add(tempoVan);
-
-        if(!tempo.isEmpty()) Collections.sort(tempo);
-
-        if(tempo.isEmpty()) {
-            setVeiculoMenorTempo("impossivel");
-            return 0.0;
+        if(carretaVerificada && (tempoCarreta <= tempoMaximo)) {
+            custo.add(custoCarreta);
+            custoBeneficio.add(custoCarreta/tempoCarreta);
+            tempo.add(tempoCarreta);
+        }
+        if(carroVerificado && (tempoCarro <= tempoMaximo)) {
+            custo.add(custoCarro);
+            custoBeneficio.add(custoCarro/tempoCarro);
+            tempo.add(tempoCarro);
+        }
+        if(motoVerificada && (tempoMoto <= tempoMaximo)) {
+            custo.add(custoMoto);
+            custoBeneficio.add(custoMoto/tempoMoto);
+            tempo.add(tempoMoto);
+        }
+        if(vanVerificada && (tempoVan <= tempoMaximo)) {
+            custo.add(custoVan);
+            custoBeneficio.add(custoVan/tempoVan);
+            tempo.add(tempoVan);
         }
 
-        if(tempo.get(0) == tempoCarro) setVeiculoMenorTempo("carro");
-        else if(tempo.get(0) ==  tempoMoto) setVeiculoMenorTempo("moto");
-        else if(tempo.get(0) == tempoCarreta) setVeiculoMenorTempo("carreta");
-        else setVeiculoMenorTempo("van");
+        if(tempo.isEmpty()) {
+            setValorMenorTempo(-1.0);
+        }
+        else {
 
-        return tempo.get(0);
+            if (!custo.isEmpty()) {
+
+                Collections.sort(custo);
+                Collections.sort(custoBeneficio);
+                Collections.sort(tempo);
+
+                if (tempo.get(0) == tempoCarro) setVeiculoMenorTempo("carro");
+                else if (tempo.get(0) == tempoMoto) setVeiculoMenorTempo("moto");
+                else if (tempo.get(0) == tempoCarreta) setVeiculoMenorTempo("carreta");
+                else setVeiculoMenorTempo("van");
+
+                if (custo.get(0) == custoCarro) setVeiculoMenorCusto("carro");
+                else if (custo.get(0) == custoMoto) setVeiculoMenorCusto("moto");
+                else if (custo.get(0) == custoCarreta) setVeiculoMenorCusto("carreta");
+                else setVeiculoMenorCusto("van");
+
+                if (custoBeneficio.get(0) == custoCarro) setVeiculoMelhorCustoBeneficio("carro");
+                else if (custoBeneficio.get(0) == custoMoto) setVeiculoMelhorCustoBeneficio("moto");
+                else if (custoBeneficio.get(0) == custoCarreta)
+                    setVeiculoMelhorCustoBeneficio("carreta");
+                else setVeiculoMelhorCustoBeneficio("van");
+
+                setValorMelhorCustoBeneficio(custoBeneficio.get(0));
+                setValorMenorCusto(custo.get(0));
+                setValorMenorTempo(tempo.get(0));
+
+            }
+            else setValorMenorCusto(-1.0);
+
+        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -195,7 +227,6 @@ public class Frota {
     public void verificaVeiculoIdeal(double distancia, double carga, double tempoMaximo){
         verificaDisponibilidade();
         verificaTamanhoIdeal(carga);
-        setValorMenorCusto(verificaMenorCusto(distancia, tempoMaximo));
-        setValorMenorTempo(verificaMenorTempo(distancia, tempoMaximo));
+        verificaCustoBeneficio(distancia, tempoMaximo);
     }
 }

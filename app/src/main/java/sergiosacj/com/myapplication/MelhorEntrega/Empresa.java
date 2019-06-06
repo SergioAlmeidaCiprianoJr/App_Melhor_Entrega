@@ -24,6 +24,7 @@ public class Empresa {
         this.entregaImpossivelTamanho = false;
         this.veiculosRealizandoEntregas = new ArrayList<>();
         this.frota = new Frota();
+        this.porcentagemLucro = 0.0;
         this.numeroCarros = 0;
         this.numeroCarretas = 0;
         this.numeroMotos = 0;
@@ -128,6 +129,18 @@ public class Empresa {
         return numeroVans;
     }
 
+    public boolean isEntregaImpossivelTempo() {
+        return entregaImpossivelTempo;
+    }
+
+    public boolean isEntregaImpossivelDisponbilidade() {
+        return entregaImpossivelDisponbilidade;
+    }
+
+    public boolean isEntregaImpossivelTamanho() {
+        return entregaImpossivelTamanho;
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void realizaEntrega(double carga, double distancia, double tempoMaximo){
         this.entregaImpossivelTempo = false;
@@ -135,7 +148,7 @@ public class Empresa {
         this.entregaImpossivelTamanho = false;
         frota.verificaVeiculoIdeal(distancia, carga, tempoMaximo);
         if(frota.getVeiculosDisponiveis().isEmpty()) entregaImpossivelDisponbilidade = true;
-        else if(frota.getVeiculoMenorTempo().equals("impossivel")) entregaImpossivelTempo = true;
+        else if(frota.getValorMenorTempo().equals(-1.0)) entregaImpossivelTempo = true;
         else if(frota.getVeiculosTamanhoIdeal().isEmpty()) entregaImpossivelTamanho = true;
     }
 
