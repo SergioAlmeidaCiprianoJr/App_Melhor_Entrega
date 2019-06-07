@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import sergiosacj.com.myapplication.ComunicaFragments;
+import sergiosacj.com.myapplication.Interface.ComunicaFragments;
 import sergiosacj.com.myapplication.R;
 
 public class EntregaFragment extends Fragment {

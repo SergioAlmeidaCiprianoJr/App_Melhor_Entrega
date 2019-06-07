@@ -129,17 +129,6 @@ public class Empresa {
         return numeroVans;
     }
 
-    public boolean isEntregaImpossivelTempo() {
-        return entregaImpossivelTempo;
-    }
-
-    public boolean isEntregaImpossivelDisponbilidade() {
-        return entregaImpossivelDisponbilidade;
-    }
-
-    public boolean isEntregaImpossivelTamanho() {
-        return entregaImpossivelTamanho;
-    }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void realizaEntrega(double carga, double distancia, double tempoMaximo){
@@ -152,7 +141,12 @@ public class Empresa {
         else if(frota.getVeiculosTamanhoIdeal().isEmpty()) entregaImpossivelTamanho = true;
     }
 
-    public void confirmaEntrega(int veiculoEscolhido){
+    public boolean entregaImpossivel(){
+        if(entregaImpossivelDisponbilidade || entregaImpossivelTempo || entregaImpossivelTamanho) return true;
+        else return false;
+    }
+
+    public void confirmaEntrega(String veiculoEscolhido){
         veiculosRealizandoEntregas.add(frota.ficaIndisponivel(veiculoEscolhido));
     }
 }

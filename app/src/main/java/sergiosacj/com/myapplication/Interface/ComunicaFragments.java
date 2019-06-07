@@ -1,4 +1,4 @@
-package sergiosacj.com.myapplication;
+package sergiosacj.com.myapplication.Interface;
 
 public interface ComunicaFragments {
 
@@ -7,4 +7,8 @@ public interface ComunicaFragments {
     void realizaEntrega(double pesoCarga, double distancia, double tempoMaximo);
 
     void enviaDadosCadastro();
+
+    void enviaDadosOpcoes();
+
+    void veiculoEscolhido(String veiculoEscolhido);
 }

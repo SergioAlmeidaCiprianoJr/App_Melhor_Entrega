@@ -8,11 +8,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import sergiosacj.com.myapplication.ComunicaFragments;
+import sergiosacj.com.myapplication.Fragments.OpcaoFragment;
+import sergiosacj.com.myapplication.Interface.ComunicaFragments;
 import sergiosacj.com.myapplication.Fragments.CadastroFragment;
 import sergiosacj.com.myapplication.Fragments.DesocupaFragment;
 import sergiosacj.com.myapplication.Fragments.EntregaFragment;
@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements ComunicaFragments
     private DesocupaFragment desocupaFragment = new DesocupaFragment();
     private EntregaFragment entregaFragment = new EntregaFragment();
     private InstrucoesFragment instrucoesFragment = new InstrucoesFragment();
+    private OpcaoFragment opcaoFragment = new OpcaoFragment();
 
     private Empresa empresa = new Empresa();
 
@@ -46,11 +47,11 @@ public class MainActivity extends AppCompatActivity implements ComunicaFragments
         buttonDesocupa = findViewById(R.id.buttonDesocupar);
         buttonEntrega = findViewById(R.id.buttonEntregar);
         buttonInstrucoes = findViewById(R.id.buttonInstrucoes);
+        iniciaInstrucoesFragment();
 
         buttonCadastro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                defineCorButton("buttonCadastro");
                 iniciaCadastroFragment();
             }
         });
@@ -65,15 +66,14 @@ public class MainActivity extends AppCompatActivity implements ComunicaFragments
         buttonEntrega.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                defineCorButton("buttonEntrega");
-                iniciandoEntregaFragment();
+                iniciaEntregaFragment();
             }
         });
 
         buttonInstrucoes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                defineCorButton("buttonInstrucoes");
+                iniciaInstrucoesFragment();
             }
         });
     }
@@ -90,8 +90,11 @@ public class MainActivity extends AppCompatActivity implements ComunicaFragments
     @Override
     public void realizaEntrega(double pesoCarga, double distancia, double tempoMaximo) {
         ArrayList<Veiculos> checkEmpty = empresa.getFrota().getFrota();
-        if(!checkEmpty.isEmpty()) empresa.realizaEntrega(pesoCarga, distancia, tempoMaximo);
-        else Toast.makeText(getApplicationContext(), "Para realizar entregas realize cadastro", Toast.LENGTH_LONG);
+        if(!checkEmpty.isEmpty()) {
+            empresa.realizaEntrega(pesoCarga, distancia, tempoMaximo);
+            enviaDadosOpcoes();
+            iniciaOpcaoFragment();
+        }
     }
 
     @Override
@@ -105,14 +108,40 @@ public class MainActivity extends AppCompatActivity implements ComunicaFragments
         );
     }
 
+    @Override
+    public void enviaDadosOpcoes() {
+        opcaoFragment.recebeDados(empresa.getFrota().getVeiculoMenorCusto(),
+                                  empresa.getFrota().getVeiculoMenorTempo(),
+                                  empresa.getFrota().getVeiculoMelhorCustoBeneficio(),
+                                  empresa.entregaImpossivel());
+    }
+
+    @Override
+    public void veiculoEscolhido(String veiculoEscolhido) {
+        empresa.confirmaEntrega(veiculoEscolhido);
+    }
+
+    public void iniciaInstrucoesFragment(){
+        defineCorButton("buttonInstrucoes");
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction().replace(R.id.frameCadastro, instrucoesFragment);
+        transaction.commit();
+    }
+
     public void iniciaCadastroFragment(){
+        defineCorButton("buttonCadastro");
         enviaDadosCadastro();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction().replace(R.id.frameCadastro, cadastroFragment);
         transaction.commit();
     }
 
-    public void iniciandoEntregaFragment(){
+    public void iniciaEntregaFragment(){
+        defineCorButton("buttonEntrega");
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction().replace(R.id.frameCadastro, entregaFragment);
+        transaction.commit();
+    }
+
+    public void iniciaOpcaoFragment(){
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction().replace(R.id.frameCadastro, opcaoFragment);
         transaction.commit();
     }
 

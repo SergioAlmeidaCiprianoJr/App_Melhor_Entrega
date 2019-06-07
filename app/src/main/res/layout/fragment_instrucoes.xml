@@ -1,14 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragments.InstrucoesFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bem Vindo ao Melhor Entrega!!"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toTopOf="@+id/guideline8" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.06" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.08" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:text="Características de cada veículo:"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Carreta: Combustível: Diesel\n
+            Rendimento: 8 Km/L\n
+            Carga máxima: 30 toneladas\n
+            Velocidade média: 60 Km/h\n
+            A cada Kg de carga o rendimento é reduzido em 0.0002 Km/L"
+            android:textSize="11sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline7"
+            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Van: Combustível: Diesel\n
+            Rendimento: 10 Km/L\n
+            Carga máxima: 3,5 toneladas\n
+            Velocidade média: 80 Km/h\n
+            A cada Kg de carga o rendimento é reduzido em 0.001 Km/L"
+            android:textSize="11sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline7"
+            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Carro: Combustível: Gasolina ou Álcool\n
+            Rendimento: 14 Km/L com gasolina, 12 Km/L com álcool\n
+            Carga máxima: 360 kg\n
+            Velocidade média: 100 Km/h\n
+            A cada Kg de carga o rendimento é reduzido em 0.025 Km/L\n                 com gasolina e 0.0231 Km/L com álcool"
+            android:textSize="11sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline7"
+            app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Moto: Combustível: Gasolina ou Álcool\n
+            Rendimento: 50 Km/L com gasolina, 43 Km/L com álcool\n
+            Carga máxima: 50 kg\n
+            Velocidade média: 110 Km/h\n
+            A cada Kg de carga o rendimento é reduzido em 0.3 Km/L\n                 com gasolina e 0.4 Km/L com álcool"
+            android:textSize="11sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline7"
+            app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.15" />
+
+    </android.support.constraint.ConstraintLayout>
 
 </FrameLayout>

@@ -12,7 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import sergiosacj.com.myapplication.ComunicaFragments;
+import sergiosacj.com.myapplication.Interface.ComunicaFragments;
 import sergiosacj.com.myapplication.R;
 
 public class CadastroFragment extends Fragment {

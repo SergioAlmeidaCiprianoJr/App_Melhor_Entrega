@@ -12,7 +12,7 @@ public class Frota {
     private ArrayList<String> veiculosDisponiveis;
     private ArrayList<String> veiculosTamanhoIdeal;
     private String veiculoMenorCusto, veiculoMenorTempo, veiculoMelhorCustoBeneficio;
-    private Double valorMenorCusto, valorMenorTempo, valorMelhorCustoBeneficio;
+    private Double valorMenorTempo;
     private Carreta carreta;
     private Van van;
     private Carro carro;
@@ -57,14 +57,6 @@ public class Frota {
         return veiculoMenorTempo;
     }
 
-    public Double getValorMenorCusto() {
-        return valorMenorCusto;
-    }
-
-    public void setValorMenorCusto(Double valorMenorCusto) {
-        this.valorMenorCusto = valorMenorCusto;
-    }
-
     public Double getValorMenorTempo() {
         return valorMenorTempo;
     }
@@ -81,14 +73,6 @@ public class Frota {
         this.veiculoMelhorCustoBeneficio = veiculoMelhorCustoBeneficio;
     }
 
-    public Double getValorMelhorCustoBeneficio() {
-        return valorMelhorCustoBeneficio;
-    }
-
-    public void setValorMelhorCustoBeneficio(Double valorMelhorCustoBeneficio) {
-        this.valorMelhorCustoBeneficio = valorMelhorCustoBeneficio;
-    }
-
     public void adicionaFrota(Veiculos veiculo) {
         this.frota.add(veiculo);
     }
@@ -103,9 +87,9 @@ public class Frota {
         }
     }
 
-    public Veiculos ficaIndisponivel(int veiculoEscolhido){
-        String veiculoIdeal = veiculosDisponiveis.get(veiculoEscolhido);
-        Veiculos veiculo = frota.get(0);
+    public Veiculos ficaIndisponivel(String veiculoEscolhido){
+        String veiculoIdeal = veiculoEscolhido;
+        Veiculos veiculo = new Veiculos();
         for(int i = 0; i < frota.size(); i++){
             veiculo = frota.get(i);
             if(veiculo.getTipo().equals(veiculoIdeal) && veiculo.getEstado().equals("disponivel")) {
@@ -208,12 +192,9 @@ public class Frota {
                     setVeiculoMelhorCustoBeneficio("carreta");
                 else setVeiculoMelhorCustoBeneficio("van");
 
-                setValorMelhorCustoBeneficio(custoBeneficio.get(0));
-                setValorMenorCusto(custo.get(0));
                 setValorMenorTempo(tempo.get(0));
 
             }
-            else setValorMenorCusto(-1.0);
 
         }
     }
