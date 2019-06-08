@@ -13,6 +13,7 @@ public class Empresa {
     private int numeroMotos;
     private int numeroVans;
     private Double porcentagemLucro;
+    private Double carga, distancia, tempoMaximo;
     private boolean entregaImpossivelTempo;
     private boolean entregaImpossivelDisponbilidade;
     private boolean entregaImpossivelTamanho;
@@ -109,8 +110,16 @@ public class Empresa {
         return porcentagemLucro;
     }
 
-    public void setPorcentagemLucro(double porcentagemLucro) {
-        this.porcentagemLucro = porcentagemLucro;
+    public Double getCarga() {
+        return carga;
+    }
+
+    public Double getDistancia() {
+        return distancia;
+    }
+
+    public Double getTempoMaximo() {
+        return tempoMaximo;
     }
 
     public int getNumeroCarros() {
@@ -132,6 +141,9 @@ public class Empresa {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void realizaEntrega(double carga, double distancia, double tempoMaximo){
+        this.carga = carga;
+        this.distancia = distancia;
+        this.tempoMaximo = tempoMaximo;
         this.entregaImpossivelTempo = false;
         this.entregaImpossivelDisponbilidade = false;
         this.entregaImpossivelTamanho = false;

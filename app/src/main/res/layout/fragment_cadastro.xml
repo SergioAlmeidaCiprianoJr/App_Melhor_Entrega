@@ -36,7 +36,7 @@
                     android:layout_marginTop="0dp"
                     android:layout_marginRight="10dp"
                     android:ems="10"
-                    android:hint="Taxa de Lucro(0% - 99%)"
+                    android:hint="Taxa de Lucro (0% - 99%)"
                     android:inputType="numberDecimal" />
             </android.support.design.widget.TextInputLayout>
 
@@ -95,7 +95,7 @@
                             android:id="@+id/diminuiCarros"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:layout_marginLeft="120dp"
+                            android:layout_marginLeft="100dp"
                             android:text="-" />
 
                         <TextView
@@ -110,7 +110,7 @@
                             android:id="@+id/aumentaCarros"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginRight="20dp"
                             android:text="+" />
 
                     </LinearLayout>
@@ -134,7 +134,7 @@
                             android:id="@+id/diminuiCarretas"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:layout_marginLeft="120dp"
+                            android:layout_marginLeft="100dp"
                             android:text="-" />
 
                         <TextView
@@ -149,7 +149,7 @@
                             android:id="@+id/aumentaCarretas"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginRight="20dp"
                             android:text="+" />
 
                     </LinearLayout>
@@ -173,7 +173,7 @@
                             android:id="@+id/diminuiMotos"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:layout_marginLeft="120dp"
+                            android:layout_marginLeft="100dp"
                             android:text="-" />
 
                         <TextView
@@ -188,7 +188,7 @@
                             android:id="@+id/aumentaMotos"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginRight="20dp"
                             android:text="+" />
 
                     </LinearLayout>
@@ -212,7 +212,7 @@
                             android:id="@+id/diminuiVans"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:layout_marginLeft="120dp"
+                            android:layout_marginLeft="100dp"
                             android:text="-" />
 
                         <TextView
@@ -227,7 +227,7 @@
                             android:id="@+id/aummentaVans"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginRight="20dp"
                             android:text="+" />
 
                     </LinearLayout>

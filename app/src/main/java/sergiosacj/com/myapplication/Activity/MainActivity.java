@@ -110,10 +110,7 @@ public class MainActivity extends AppCompatActivity implements ComunicaFragments
 
     @Override
     public void enviaDadosOpcoes() {
-        opcaoFragment.recebeDados(empresa.getFrota().getVeiculoMenorCusto(),
-                                  empresa.getFrota().getVeiculoMenorTempo(),
-                                  empresa.getFrota().getVeiculoMelhorCustoBeneficio(),
-                                  empresa.entregaImpossivel());
+        opcaoFragment.recebeDados(empresa);
     }
 
     @Override

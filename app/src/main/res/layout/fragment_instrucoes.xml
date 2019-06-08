@@ -38,7 +38,7 @@
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="24dp"
             android:text="Características de cada veículo:"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@+id/guideline6"
