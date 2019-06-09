@@ -92,8 +92,10 @@ public class MainActivity extends AppCompatActivity implements ComunicaFragments
         ArrayList<Veiculos> checkEmpty = empresa.getFrota().getFrota();
         if(!checkEmpty.isEmpty()) {
             empresa.realizaEntrega(pesoCarga, distancia, tempoMaximo);
-            enviaDadosOpcoes();
-            iniciaOpcaoFragment();
+            if(!empresa.entregaImpossivel()){
+                enviaDadosOpcoes();
+                iniciaOpcaoFragment();
+            }
         }
     }
 
@@ -116,6 +118,7 @@ public class MainActivity extends AppCompatActivity implements ComunicaFragments
     @Override
     public void veiculoEscolhido(String veiculoEscolhido) {
         empresa.confirmaEntrega(veiculoEscolhido);
+        iniciaInstrucoesFragment();
     }
 
     public void iniciaInstrucoesFragment(){
@@ -140,6 +143,10 @@ public class MainActivity extends AppCompatActivity implements ComunicaFragments
     public void iniciaOpcaoFragment(){
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction().replace(R.id.frameCadastro, opcaoFragment);
         transaction.commit();
+    }
+
+    public void iniciaDesocupaFragment(){
+
     }
 
     public void defineCorButton(String button){

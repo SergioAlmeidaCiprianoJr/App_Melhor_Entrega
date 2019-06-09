@@ -120,6 +120,10 @@ public class Frota {
 
     public void verificaDisponibilidade(){
         veiculosDisponiveis.clear();
+        carroVerificado = false;
+        carretaVerificada = false;
+        motoVerificada = false;
+        vanVerificada = false;
         for(int i = 0; i < frota.size(); i++){
             if(frota.get(i).getEstado().equals("disponivel")) {
                 adicionaVeiculosDisponiveis(frota.get(i).getTipo());
@@ -170,31 +174,27 @@ public class Frota {
         }
         else {
 
-            if (!custo.isEmpty()) {
+            Collections.sort(custo);
+            Collections.sort(custoBeneficio);
+            Collections.sort(tempo);
 
-                Collections.sort(custo);
-                Collections.sort(custoBeneficio);
-                Collections.sort(tempo);
+            if (tempo.get(0) == tempoCarro) setVeiculoMenorTempo("carro");
+            else if (tempo.get(0) == tempoMoto) setVeiculoMenorTempo("moto");
+            else if (tempo.get(0) == tempoCarreta) setVeiculoMenorTempo("carreta");
+            else setVeiculoMenorTempo("van");
 
-                if (tempo.get(0) == tempoCarro) setVeiculoMenorTempo("carro");
-                else if (tempo.get(0) == tempoMoto) setVeiculoMenorTempo("moto");
-                else if (tempo.get(0) == tempoCarreta) setVeiculoMenorTempo("carreta");
-                else setVeiculoMenorTempo("van");
+            if (custo.get(0) == custoCarro) setVeiculoMenorCusto("carro");
+            else if (custo.get(0) == custoMoto) setVeiculoMenorCusto("moto");
+            else if (custo.get(0) == custoCarreta) setVeiculoMenorCusto("carreta");
+            else setVeiculoMenorCusto("van");
 
-                if (custo.get(0) == custoCarro) setVeiculoMenorCusto("carro");
-                else if (custo.get(0) == custoMoto) setVeiculoMenorCusto("moto");
-                else if (custo.get(0) == custoCarreta) setVeiculoMenorCusto("carreta");
-                else setVeiculoMenorCusto("van");
+            if (custoBeneficio.get(0) == custoCarro) setVeiculoMelhorCustoBeneficio("carro");
+            else if (custoBeneficio.get(0) == custoMoto) setVeiculoMelhorCustoBeneficio("moto");
+            else if (custoBeneficio.get(0) == custoCarreta)
+                setVeiculoMelhorCustoBeneficio("carreta");
+            else setVeiculoMelhorCustoBeneficio("van");
 
-                if (custoBeneficio.get(0) == custoCarro) setVeiculoMelhorCustoBeneficio("carro");
-                else if (custoBeneficio.get(0) == custoMoto) setVeiculoMelhorCustoBeneficio("moto");
-                else if (custoBeneficio.get(0) == custoCarreta)
-                    setVeiculoMelhorCustoBeneficio("carreta");
-                else setVeiculoMelhorCustoBeneficio("van");
-
-                setValorMenorTempo(tempo.get(0));
-
-            }
+            setValorMenorTempo(tempo.get(0));
 
         }
     }
