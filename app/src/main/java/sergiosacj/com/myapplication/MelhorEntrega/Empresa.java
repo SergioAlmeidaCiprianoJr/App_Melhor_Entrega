@@ -44,8 +44,8 @@ public class Empresa {
             this.numeroCarros = numeroCarros;
         }
         else if(numeroCarros < this.numeroCarros){
-            removeFrota(carro, numeroCarros);
-            this.numeroCarros -= numeroCarros;
+            removeFrota(carro, this.numeroCarros-numeroCarros);
+            this.numeroCarros = numeroCarros;
         }
 
         if(numeroCarretas > this.numeroCarretas) {
@@ -53,8 +53,8 @@ public class Empresa {
             this.numeroCarretas = numeroCarretas;
         }
         else if(numeroCarretas < this.numeroCarretas){
-            removeFrota(carreta, numeroCarretas);
-            this.numeroCarretas -= numeroCarretas;
+            removeFrota(carreta, this.numeroCarretas-numeroCarretas);
+            this.numeroCarretas = numeroCarretas;
         }
 
         if(numeroMotos > this.numeroMotos) {
@@ -62,8 +62,8 @@ public class Empresa {
             this.numeroMotos = numeroMotos;
         }
         else if(numeroMotos < this.numeroMotos){
-            removeFrota(moto, numeroMotos);
-            this.numeroMotos -= numeroMotos;
+            removeFrota(moto, this.numeroMotos-numeroMotos);
+            this.numeroMotos = numeroMotos;
         }
 
         if(numeroVans > this.numeroVans) {
@@ -71,8 +71,8 @@ public class Empresa {
             this.numeroVans = numeroVans;
         }
         else if(numeroVans < this.numeroVans){
-            removeFrota(van, numeroVans);
-            this.numeroVans -= numeroVans;
+            removeFrota(van, this.numeroVans-numeroVans);
+            this.numeroVans = numeroVans;
         }
 
     }

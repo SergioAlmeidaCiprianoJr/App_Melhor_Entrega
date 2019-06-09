@@ -25,7 +25,14 @@ public class Veiculo_diesel extends Veiculos {
     @Override
     public double calculaCusto(double distancia) {
         super.calculaCusto(distancia);
-        distancia *= 2;
+        calculaRendimento();
         return (distancia/getRendimentoDiesel())*DIESEL;
+    }
+
+    @Override
+    public double calculaLucro(double porcentagemLucro, double distancia) {
+        super.calculaLucro(porcentagemLucro, distancia);
+        double custo = calculaCusto(distancia);
+        return custo+custo*porcentagemLucro/100;
     }
 }

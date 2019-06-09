@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements ComunicaFragments
         buttonDesocupa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                defineCorButton("buttonDesocupa");
+                iniciaDesocupaFragment();
             }
         });
 
@@ -83,6 +84,7 @@ public class MainActivity extends AppCompatActivity implements ComunicaFragments
     public void atualizaEmpresa(Double porcentagemLucro, int numeroCarros, int numeroCarretas, int numeroMotos, int numeroVans) {
 
         empresa.atualizaEmpresa(porcentagemLucro, numeroCarros, numeroCarretas, numeroMotos, numeroVans);
+        iniciaEntregaFragment();
 
     }
 
@@ -97,6 +99,7 @@ public class MainActivity extends AppCompatActivity implements ComunicaFragments
                 iniciaOpcaoFragment();
             }
         }
+        else Toast.makeText(this, "Sem veiculos", Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -118,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements ComunicaFragments
     @Override
     public void veiculoEscolhido(String veiculoEscolhido) {
         empresa.confirmaEntrega(veiculoEscolhido);
-        iniciaInstrucoesFragment();
+        iniciaDesocupaFragment();
     }
 
     public void iniciaInstrucoesFragment(){
@@ -146,7 +149,9 @@ public class MainActivity extends AppCompatActivity implements ComunicaFragments
     }
 
     public void iniciaDesocupaFragment(){
-
+        defineCorButton("buttonDesocupa");
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction().replace(R.id.frameCadastro, desocupaFragment);
+        transaction.commit();
     }
 
     public void defineCorButton(String button){

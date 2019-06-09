@@ -97,7 +97,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Custo/Beneficio"
+            android:text="Custo+Lucro"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/guideline15"
             app:layout_constraintTop_toBottomOf="@+id/textView11" />
@@ -147,7 +147,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Custo/Beneficio"
+            android:text="Custo+Lucro"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/guideline15"
             app:layout_constraintTop_toBottomOf="@+id/textView16" />
@@ -197,7 +197,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Custo/Beneficio"
+            android:text="Custo+Lucro"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/guideline15"
             app:layout_constraintTop_toBottomOf="@+id/textView21" />

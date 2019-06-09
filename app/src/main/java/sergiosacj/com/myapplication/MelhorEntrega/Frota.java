@@ -80,7 +80,7 @@ public class Frota {
     public void removeFrota(Veiculos veiculo) {
         for(int i = 0; i < frota.size(); i++){
             Veiculos veiculoSaindo = frota.get(i);
-            if(veiculoSaindo.getTipo() == veiculo.getTipo()) {
+            if(veiculoSaindo.getTipo().equals(veiculo.getTipo())) {
                 frota.remove(i);
                 break;
             }
@@ -132,8 +132,12 @@ public class Frota {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public void verificaCustoBeneficio(double distancia, double tempoMaximo){
+    public void verificaCustoBeneficio(double distancia, double carga, double tempoMaximo){
 
+        carreta.setCargaAtual(carga);
+        carro.setCargaAtual(carga);
+        moto.setCargaAtual(carga);
+        van.setCargaAtual(carga);
 
         ArrayList<Double> custo  = new ArrayList<>();
         ArrayList<Double> custoBeneficio = new ArrayList<>();
@@ -202,16 +206,23 @@ public class Frota {
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void verificaTamanhoIdeal(double carga){
         veiculosTamanhoIdeal.clear();
-        if(carga < carro.getCargaSuportada()) veiculosTamanhoIdeal.add("carro");
-        if(carga < carreta.getCargaSuportada()) veiculosTamanhoIdeal.add("carreta");
-        if(carga < van.getCargaSuportada()) veiculosTamanhoIdeal.add("van");
-        if(carga < moto.getCargaSuportada()) veiculosTamanhoIdeal.add("moto");
+        if(carga <= carro.getCargaSuportada()) veiculosTamanhoIdeal.add("carro");
+        else carroVerificado = false;
+        if(carga <= carreta.getCargaSuportada()) veiculosTamanhoIdeal.add("carreta");
+        else carretaVerificada = false;
+        if(carga <= van.getCargaSuportada()) veiculosTamanhoIdeal.add("van");
+        else vanVerificada = false;
+        if(carga <= moto.getCargaSuportada()) veiculosTamanhoIdeal.add("moto");
+        else motoVerificada = false;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void verificaVeiculoIdeal(double distancia, double carga, double tempoMaximo){
+        this.veiculoMelhorCustoBeneficio = "";
+        this.veiculoMenorCusto = "";
+        this.veiculoMenorTempo = "";
         verificaDisponibilidade();
         verificaTamanhoIdeal(carga);
-        verificaCustoBeneficio(distancia, tempoMaximo);
+        verificaCustoBeneficio(distancia, carga, tempoMaximo);
     }
 }

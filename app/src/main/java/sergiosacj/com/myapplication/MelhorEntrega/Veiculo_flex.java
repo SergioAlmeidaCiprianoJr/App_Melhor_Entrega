@@ -62,6 +62,7 @@ public class Veiculo_flex extends Veiculos {
     @Override
     public double calculaCusto(double distancia) {
         super.calculaCusto(distancia);
+        calculaRendimento();
         double custoGasolina = calculaCustoGasolina(distancia), custoAlccol = calculaCustoAlcool(distancia);
         if (custoAlccol>custoGasolina){
             melhorCombustivel = "gasolina";
@@ -74,12 +75,17 @@ public class Veiculo_flex extends Veiculos {
     }
 
     public double calculaCustoGasolina(double distancia) {
-        distancia *= 2;
         return (distancia/getRendimentoGasolina())*GASOLINA;
     }
 
     public double calculaCustoAlcool(double distancia) {
-        distancia *= 2;
         return (distancia/getRendimentoAlcool())*ALCOOL;
+    }
+
+    @Override
+    public double calculaLucro(double porcentagemLucro, double distancia) {
+        super.calculaLucro(porcentagemLucro, distancia);
+        double custo = calculaCusto(distancia);
+        return custo+custo*porcentagemLucro/100;
     }
 }

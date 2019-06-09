@@ -92,12 +92,12 @@ public class Veiculos {
     }
 
     public double calculaCusto(double distancia){
-        //ao calcular o custo considera o trajeto de ida e volta
-        double litros = distancia*2/getRendimento(), COMBUSTIVEL = 1;
+        double litros = distancia/getRendimento(), COMBUSTIVEL = 1;
         return litros*COMBUSTIVEL;
     }
 
     public double calculaLucro(double porcentagemLucro, double distancia){
-        return calculaCusto(distancia)*(100-porcentagemLucro)/porcentagemLucro;
+        double custo = calculaCusto(distancia);
+        return calculaCusto(distancia)+calculaCusto(distancia)*porcentagemLucro/100;
     }
 }

@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 import sergiosacj.com.myapplication.Interface.ComunicaFragments;
@@ -18,7 +20,6 @@ import sergiosacj.com.myapplication.MelhorEntrega.Carro;
 import sergiosacj.com.myapplication.MelhorEntrega.Empresa;
 import sergiosacj.com.myapplication.MelhorEntrega.Moto;
 import sergiosacj.com.myapplication.MelhorEntrega.Van;
-import sergiosacj.com.myapplication.MelhorEntrega.Veiculos;
 import sergiosacj.com.myapplication.R;
 
 public class OpcaoFragment extends Fragment {
@@ -26,17 +27,17 @@ public class OpcaoFragment extends Fragment {
     private TextView tipoMenorCusto;
     private TextView custoMenorCusto;
     private TextView tempoMenorCusto;
-    private TextView custoBeneficioMenorCusto;
+    private TextView custoLucroMenorCusto;
 
     private TextView tipoMenorTempo;
     private TextView custoMenorTempo;
     private TextView tempoMenorTempo;
-    private TextView custoBeneficioMenorTempo;
+    private TextView custoLucroMenorTempo;
 
     private TextView tipoMelhorCustoBeneficio;
     private TextView custoMelhorCustoBeneficio;
     private TextView tempoMelhorCustoBeneficio;
-    private TextView custoBeneficioMelhorCustoBeneficio;
+    private TextView custoLucroMelhorCustoBeneficio;
 
     private ComunicaFragments comunicaFragments;
 
@@ -66,17 +67,17 @@ public class OpcaoFragment extends Fragment {
         tipoMenorCusto = view.findViewById(R.id.tipoVeiculoMenorCusto);
         custoMenorCusto = view.findViewById(R.id.custoVeiculoMenorCusto);
         tempoMenorCusto = view.findViewById(R.id.tempoVeiculoMenorCusto);
-        custoBeneficioMenorCusto = view.findViewById(R.id.custoBeneficioVeiculoMenorCusto);
+        custoLucroMenorCusto = view.findViewById(R.id.custoBeneficioVeiculoMenorCusto);
 
         tipoMenorTempo = view.findViewById(R.id.tipoVeiculoMenorTempo);
         custoMenorTempo = view.findViewById(R.id.custoVeiculoMenorTempo);
         tempoMenorTempo = view.findViewById(R.id.tempoVeiculoMenorTempo);
-        custoBeneficioMenorTempo = view.findViewById(R.id.custoBeneficioVeiculoMenorTempo);
+        custoLucroMenorTempo = view.findViewById(R.id.custoBeneficioVeiculoMenorTempo);
 
         tipoMelhorCustoBeneficio = view.findViewById(R.id.tipoVeiculoMelhorCustoBeneficio);
         custoMelhorCustoBeneficio = view.findViewById(R.id.custoVeiculoMelhorCustoBeneficio);
         tempoMelhorCustoBeneficio = view.findViewById(R.id.tempoVeiculoMelhorCustoBeneficio);
-        custoBeneficioMelhorCustoBeneficio = view.findViewById(R.id.custoBeneficioVeiculoMenorCustoBeneficio);
+        custoLucroMelhorCustoBeneficio = view.findViewById(R.id.custoBeneficioVeiculoMenorCustoBeneficio);
 
         escolheCusto = view.findViewById(R.id.buttonVeiculoMenorCusto);
         escolheTempo = view.findViewById(R.id.buttonVeiculoMenorTempo);
@@ -128,93 +129,87 @@ public class OpcaoFragment extends Fragment {
         Moto calculaMoto = new Moto();
         Van calculaVan = new Van();
 
-        Double custoCarreta = calculaCarreta.calculaCusto(empresa.getDistancia());
-        Double tempoCarreta = calculaCarreta.calculaTempo(empresa.getDistancia());
-        custoCarreta = arredondar(custoCarreta);
-        tempoCarreta = arredondar(tempoCarreta);
+        calculaCarreta.setCargaAtual(empresa.getCarga());
+        calculaCarro.setCargaAtual(empresa.getCarga());
+        calculaMoto.setCargaAtual(empresa.getCarga());
+        calculaVan.setCargaAtual(empresa.getCarga());
 
         carreta.add(empresa.getFrota().getVeiculoMenorCusto());
-        carreta.add(String.valueOf(custoCarreta));
-        carreta.add(String.valueOf(tempoCarreta));
-        carreta.add(String.valueOf(custoCarreta / tempoCarreta));
-
-        Double custoCarro = calculaCarro.calculaCusto(empresa.getDistancia());
-        Double tempoCarro = calculaCarro.calculaTempo(empresa.getDistancia());
-        custoCarro = arredondar(custoCarro);
-        tempoCarro = arredondar(tempoCarro);
+        carreta.add(empresa.getFrota().getVeiculoMenorTempo());
+        carreta.add(empresa.getFrota().getVeiculoMelhorCustoBeneficio());
+        carreta.add(String.valueOf(arredondar(calculaCarreta.calculaCusto(empresa.getDistancia()))));
+        carreta.add(String.valueOf(arredondar(calculaCarreta.calculaTempo(empresa.getDistancia()))));
+        carreta.add(String.valueOf(arredondar(calculaCarreta.calculaLucro(empresa.getPorcentagemLucro(), empresa.getDistancia()))));
 
         carro.add(empresa.getFrota().getVeiculoMenorCusto());
-        carro.add(String.valueOf(custoCarro));
-        carro.add(String.valueOf(tempoCarro));
-        carro.add(String.valueOf(custoCarro / tempoCarro));
-
-        Double custoMoto = calculaMoto.calculaCusto(empresa.getDistancia());
-        Double tempoMoto = calculaMoto.calculaTempo(empresa.getDistancia());
-        custoMoto = arredondar(custoMoto);
-        tempoMoto = arredondar(tempoMoto);
+        carro.add(empresa.getFrota().getVeiculoMenorTempo());
+        carro.add(empresa.getFrota().getVeiculoMelhorCustoBeneficio());
+        carro.add(String.valueOf(arredondar(calculaCarro.calculaCusto(empresa.getDistancia()))));
+        carro.add(String.valueOf(arredondar(calculaCarro.calculaTempo(empresa.getDistancia()))));
+        carro.add(String.valueOf(arredondar(calculaCarro.calculaLucro(empresa.getPorcentagemLucro(), empresa.getDistancia()))));
 
         moto.add(empresa.getFrota().getVeiculoMenorCusto());
-        moto.add(String.valueOf(custoMoto));
-        moto.add(String.valueOf(tempoMoto));
-        moto.add(String.valueOf(custoMoto / tempoMoto));
-
-        Double custoVan = calculaVan.calculaCusto(empresa.getDistancia());
-        Double tempoVan = calculaVan.calculaTempo(empresa.getDistancia());
-        custoVan = arredondar(custoVan);
-        tempoVan = arredondar(tempoVan);
+        moto.add(empresa.getFrota().getVeiculoMenorTempo());
+        moto.add(empresa.getFrota().getVeiculoMelhorCustoBeneficio());
+        moto.add(String.valueOf(arredondar(calculaMoto.calculaCusto(empresa.getDistancia()))));
+        moto.add(String.valueOf(arredondar(calculaMoto.calculaTempo(empresa.getDistancia()))));
+        moto.add(String.valueOf(arredondar(calculaMoto.calculaLucro(empresa.getPorcentagemLucro(), empresa.getDistancia()))));
 
         van.add(empresa.getFrota().getVeiculoMenorCusto());
-        van.add(String.valueOf(custoVan));
-        van.add(String.valueOf(tempoVan));
-        van.add(String.valueOf(custoVan / tempoVan));
+        van.add(empresa.getFrota().getVeiculoMenorTempo());
+        van.add(empresa.getFrota().getVeiculoMelhorCustoBeneficio());
+        van.add(String.valueOf(arredondar(calculaVan.calculaCusto(empresa.getDistancia()))));
+        van.add(String.valueOf(arredondar(calculaVan.calculaTempo(empresa.getDistancia()))));
+        van.add(String.valueOf(arredondar(calculaVan.calculaLucro(empresa.getPorcentagemLucro(), empresa.getDistancia()))));
 
 
-        if(empresa.getFrota().getVeiculoMenorCusto().equals("carro")) veiculoMenorCusto(carro);
-        else if(empresa.getFrota().getVeiculoMenorCusto().equals("carreta")) veiculoMenorCusto(carreta);
-        else if(empresa.getFrota().getVeiculoMenorCusto().equals("moto")) veiculoMenorCusto(moto);
-        else if(empresa.getFrota().getVeiculoMenorCusto().equals("van")) veiculoMenorCusto(van);
+        if(empresa.getFrota().getVeiculoMenorCusto().equals("carro")) veiculoMenorCusto(carro, 0);
+        else if(empresa.getFrota().getVeiculoMenorCusto().equals("carreta")) veiculoMenorCusto(carreta, 0);
+        else if(empresa.getFrota().getVeiculoMenorCusto().equals("moto")) veiculoMenorCusto(moto, 0);
+        else if(empresa.getFrota().getVeiculoMenorCusto().equals("van")) veiculoMenorCusto(van, 0);
 
-        if(empresa.getFrota().getVeiculoMenorTempo().equals("carro")) veiculoMenorTempo(carro);
-        else if(empresa.getFrota().getVeiculoMenorTempo().equals("carreta")) veiculoMenorTempo(carreta);
-        else if(empresa.getFrota().getVeiculoMenorTempo().equals("moto")) veiculoMenorTempo(moto);
-        else if(empresa.getFrota().getVeiculoMenorTempo().equals("van")) veiculoMenorTempo(van);
+        if(empresa.getFrota().getVeiculoMenorTempo().equals("carro")) veiculoMenorTempo(carro, 1);
+        else if(empresa.getFrota().getVeiculoMenorTempo().equals("carreta")) veiculoMenorTempo(carreta, 1);
+        else if(empresa.getFrota().getVeiculoMenorTempo().equals("moto")) veiculoMenorTempo(moto, 1);
+        else if(empresa.getFrota().getVeiculoMenorTempo().equals("van")) veiculoMenorTempo(van, 1);
 
-        if(empresa.getFrota().getVeiculoMelhorCustoBeneficio().equals("carro")) veiculoMelhorCustoBeneficio(carro);
-        else if(empresa.getFrota().getVeiculoMelhorCustoBeneficio().equals("carreta")) veiculoMelhorCustoBeneficio(carreta);
-        else if(empresa.getFrota().getVeiculoMelhorCustoBeneficio().equals("moto")) veiculoMelhorCustoBeneficio(moto);
-        else if(empresa.getFrota().getVeiculoMelhorCustoBeneficio().equals("van")) veiculoMelhorCustoBeneficio(van);
-
-    }
-
-    public void veiculoMenorCusto(ArrayList<String> veiculo){
-
-        tipoMenorCusto.setText(veiculo.get(0));
-        custoMenorCusto.setText(veiculo.get(1));
-        tempoMenorCusto.setText(veiculo.get(2));
-        custoBeneficioMenorCusto.setText(veiculo.get(3));
+        if(empresa.getFrota().getVeiculoMelhorCustoBeneficio().equals("carro")) veiculoMelhorCustoBeneficio(carro, 2);
+        else if(empresa.getFrota().getVeiculoMelhorCustoBeneficio().equals("carreta")) veiculoMelhorCustoBeneficio(carreta, 2);
+        else if(empresa.getFrota().getVeiculoMelhorCustoBeneficio().equals("moto")) veiculoMelhorCustoBeneficio(moto, 2);
+        else if(empresa.getFrota().getVeiculoMelhorCustoBeneficio().equals("van")) veiculoMelhorCustoBeneficio(van, 2);
 
     }
 
-    public void veiculoMenorTempo(ArrayList<String> veiculo){
+    public void veiculoMenorCusto(ArrayList<String> veiculo, int posicao){
 
-        tipoMenorTempo.setText(veiculo.get(0));
-        custoMenorTempo.setText(veiculo.get(1));
-        tempoMenorTempo.setText(veiculo.get(2));
-        custoBeneficioMenorTempo.setText(veiculo.get(3));
-
-    }
-
-    public void veiculoMelhorCustoBeneficio(ArrayList<String> veiculo){
-
-        tipoMelhorCustoBeneficio.setText(veiculo.get(0));
-        custoMelhorCustoBeneficio.setText(veiculo.get(1));
-        tempoMelhorCustoBeneficio.setText(veiculo.get(2));
-        custoBeneficioMelhorCustoBeneficio.setText(veiculo.get(3));
+        tipoMenorCusto.setText(veiculo.get(posicao));
+        custoMenorCusto.setText(veiculo.get(3));
+        tempoMenorCusto.setText(veiculo.get(4));
+        custoLucroMenorCusto.setText(veiculo.get(5));
 
     }
 
-    private static double arredondar(double media) {
-        return Math.round(media);
+    public void veiculoMenorTempo(ArrayList<String> veiculo, int posicao){
+
+        tipoMenorTempo.setText(veiculo.get(posicao));
+        custoMenorTempo.setText(veiculo.get(3));
+        tempoMenorTempo.setText(veiculo.get(4));
+        custoLucroMenorTempo.setText(veiculo.get(5));
+
+    }
+
+    public void veiculoMelhorCustoBeneficio(ArrayList<String> veiculo, int posicao){
+
+        tipoMelhorCustoBeneficio.setText(veiculo.get(posicao));
+        custoMelhorCustoBeneficio.setText(veiculo.get(3));
+        tempoMelhorCustoBeneficio.setText(veiculo.get(4));
+        custoLucroMelhorCustoBeneficio.setText(veiculo.get(5));
+
+    }
+
+    private static String arredondar(double media) {
+        NumberFormat formatter = new DecimalFormat("0.##");
+        return formatter.format(media);
     }
 
 
