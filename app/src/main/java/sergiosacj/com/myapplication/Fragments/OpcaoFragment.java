@@ -162,7 +162,6 @@ public class OpcaoFragment extends Fragment {
         van.add(String.valueOf(arredondar(calculaVan.calculaTempo(empresa.getDistancia()))));
         van.add(String.valueOf(arredondar(calculaVan.calculaLucro(empresa.getPorcentagemLucro(), empresa.getDistancia()))));
 
-
         if(empresa.getFrota().getVeiculoMenorCusto().equals("carro")) veiculoMenorCusto(carro, 0);
         else if(empresa.getFrota().getVeiculoMenorCusto().equals("carreta")) veiculoMenorCusto(carreta, 0);
         else if(empresa.getFrota().getVeiculoMenorCusto().equals("moto")) veiculoMenorCusto(moto, 0);
@@ -186,6 +185,7 @@ public class OpcaoFragment extends Fragment {
         custoMenorCusto.setText(veiculo.get(3));
         tempoMenorCusto.setText(veiculo.get(4));
         custoLucroMenorCusto.setText(veiculo.get(5));
+
 
     }
 

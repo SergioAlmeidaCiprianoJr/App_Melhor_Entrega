@@ -6,7 +6,6 @@ public class Veiculo_flex extends Veiculos {
     private double rendimentoGasolina;
     private double taxaReducaoRendimentoAlcool;
     private double taxaReducaoRendimentoGasolina;
-    private String melhorCombustivel;
 
     public Veiculo_flex(){
         setCombustivel("flex");
@@ -44,13 +43,6 @@ public class Veiculo_flex extends Veiculos {
         this.taxaReducaoRendimentoGasolina = taxaReducaoRendimentoGasolina;
     }
 
-    @Override
-    public void calculaRendimento() {
-        super.calculaRendimento();
-        calculaRendimentoGasolina();
-        calculaRendimentoAlcool();
-    }
-
     public void calculaRendimentoGasolina(){
         setRendimentoGasolina(getRendimentoGasolina() - getCargaAtual()*getTaxaReducaoRendimentoGasolina());
     }
@@ -62,23 +54,22 @@ public class Veiculo_flex extends Veiculos {
     @Override
     public double calculaCusto(double distancia) {
         super.calculaCusto(distancia);
-        calculaRendimento();
         double custoGasolina = calculaCustoGasolina(distancia), custoAlccol = calculaCustoAlcool(distancia);
         if (custoAlccol>custoGasolina){
-            melhorCombustivel = "gasolina";
             return custoGasolina;
         }
         else{
-            melhorCombustivel = "alcool";
             return custoAlccol;
         }
     }
 
     public double calculaCustoGasolina(double distancia) {
+        calculaRendimentoGasolina();
         return (distancia/getRendimentoGasolina())*GASOLINA;
     }
 
     public double calculaCustoAlcool(double distancia) {
+        calculaRendimentoAlcool();
         return (distancia/getRendimentoAlcool())*ALCOOL;
     }
 
@@ -86,6 +77,6 @@ public class Veiculo_flex extends Veiculos {
     public double calculaLucro(double porcentagemLucro, double distancia) {
         super.calculaLucro(porcentagemLucro, distancia);
         double custo = calculaCusto(distancia);
-        return custo+custo*porcentagemLucro/100;
+        return custo+(custo*porcentagemLucro/100);
     }
 }

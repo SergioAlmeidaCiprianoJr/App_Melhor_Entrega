@@ -33,6 +33,6 @@ public class Veiculo_diesel extends Veiculos {
     public double calculaLucro(double porcentagemLucro, double distancia) {
         super.calculaLucro(porcentagemLucro, distancia);
         double custo = calculaCusto(distancia);
-        return custo+custo*porcentagemLucro/100;
+        return custo+(custo*porcentagemLucro/100);
     }
 }
