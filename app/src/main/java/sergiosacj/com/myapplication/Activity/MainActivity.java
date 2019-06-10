@@ -1,5 +1,6 @@
 package sergiosacj.com.myapplication.Activity;
 
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import sergiosacj.com.myapplication.Fragments.OpcaoFragment;
 import sergiosacj.com.myapplication.Interface.ComunicaFragments;
@@ -37,6 +39,9 @@ public class MainActivity extends AppCompatActivity implements ComunicaFragments
     private Button buttonEntrega;
     private Button buttonInstrucoes;
 
+    private static final String ARQUIVO_PREFERENCIAS = "ArquivoPreferencias";
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +82,8 @@ public class MainActivity extends AppCompatActivity implements ComunicaFragments
                 iniciaInstrucoesFragment();
             }
         });
+
+        validaArquivo();
     }
 
 
@@ -84,6 +91,18 @@ public class MainActivity extends AppCompatActivity implements ComunicaFragments
     public void atualizaEmpresa(Double porcentagemLucro, int numeroCarros, int numeroCarretas, int numeroMotos, int numeroVans) {
 
         empresa.atualizaEmpresa(porcentagemLucro, numeroCarros, numeroCarretas, numeroMotos, numeroVans);
+
+        SharedPreferences preferences = getSharedPreferences(ARQUIVO_PREFERENCIAS, 0);
+        SharedPreferences.Editor editor = preferences.edit();
+
+        editor.putString("porcentagemLucro", String.valueOf(porcentagemLucro));
+        editor.putInt("numeroCarretas", numeroCarretas);
+        editor.putInt("numeroCarros", numeroCarros);
+        editor.putInt("numeroMotos", numeroMotos);
+        editor.putInt("numeroVans", numeroVans);
+        editor.apply();
+        editor.commit();
+
         iniciaEntregaFragment();
 
     }
@@ -167,6 +186,32 @@ public class MainActivity extends AppCompatActivity implements ComunicaFragments
 
         if(button.equals("buttonInstrucoes")) buttonInstrucoes.setTextColor(Color.parseColor("#eead2d"));
         else buttonInstrucoes.setTextColor(Color.parseColor("#FFFFFF"));
+
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public void validaArquivo(){
+
+        double porcentagemLucro = 0;
+        int numeroCarretas = 0, numeroCarros = 0, numeroMotos = 0, numeroVans = 0;
+
+        SharedPreferences preferences = getSharedPreferences(ARQUIVO_PREFERENCIAS, 0);
+        if(preferences.contains("porcentagemLucro")){
+
+            porcentagemLucro = Double.parseDouble(Objects.requireNonNull(preferences.getString("porcentagemLucro", "")));
+
+        }
+        
+        numeroCarretas = preferences.getInt("numeroCarretas", 0);
+
+        numeroCarros = preferences.getInt("numeroCarros", 0);
+
+        numeroMotos = preferences.getInt("numeroMotos", 0);
+
+        numeroVans = preferences.getInt("numeroVans", 0);
+
+
+        empresa.atualizaEmpresa(porcentagemLucro, numeroCarros, numeroCarretas, numeroMotos, numeroVans);
 
     }
 }

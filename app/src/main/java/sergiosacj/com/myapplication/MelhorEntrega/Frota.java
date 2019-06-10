@@ -23,10 +23,6 @@ public class Frota {
         this.frota = new ArrayList<>();
         this.veiculosDisponiveis = new ArrayList<>();
         this.veiculosTamanhoIdeal = new ArrayList<>();
-        this.carreta = new Carreta();
-        this.carro = new Carro();
-        this.moto = new Moto();
-        this.van = new Van();
     }
 
     public ArrayList<Veiculos> getFrota() {
@@ -88,11 +84,10 @@ public class Frota {
     }
 
     public Veiculos ficaIndisponivel(String veiculoEscolhido){
-        String veiculoIdeal = veiculoEscolhido;
         Veiculos veiculo = new Veiculos();
         for(int i = 0; i < frota.size(); i++){
             veiculo = frota.get(i);
-            if(veiculo.getTipo().equals(veiculoIdeal) && veiculo.getEstado().equals("disponivel")) {
+            if(veiculo.getTipo().equals(veiculoEscolhido) && veiculo.getEstado().equals("disponivel")) {
                 frota.get(i).setEstado("indisponivel");
                 return veiculo;
             }
@@ -114,7 +109,7 @@ public class Frota {
             if(tipoVeiculo.equals("carro")) carroVerificado = true;
             else if(tipoVeiculo.equals("carreta")) carretaVerificada = true;
             else if(tipoVeiculo.equals("moto")) motoVerificada = true;
-            else vanVerificada = true;
+            else if(tipoVeiculo.equals("van")) vanVerificada = true;
         }
     }
 
@@ -134,10 +129,20 @@ public class Frota {
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void verificaCustoBeneficio(double distancia, double carga, double tempoMaximo){
 
+        this.carreta = new Carreta();
+        this.carro = new Carro();
+        this.moto = new Moto();
+        this.van = new Van();
+
         carreta.setCargaAtual(carga);
         carro.setCargaAtual(carga);
         moto.setCargaAtual(carga);
         van.setCargaAtual(carga);
+
+        carreta.calculaRendimento();
+        carro.calculaRendimento();
+        moto.calculaRendimento();;
+        van.calculaRendimento();
 
         ArrayList<Double> custo  = new ArrayList<>();
         ArrayList<Double> custoBeneficio = new ArrayList<>();
@@ -205,6 +210,12 @@ public class Frota {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void verificaTamanhoIdeal(double carga){
+
+        this.carreta = new Carreta();
+        this.carro = new Carro();
+        this.moto = new Moto();
+        this.van = new Van();
+
         veiculosTamanhoIdeal.clear();
         if(carga <= carro.getCargaSuportada()) veiculosTamanhoIdeal.add("carro");
         else carroVerificado = false;

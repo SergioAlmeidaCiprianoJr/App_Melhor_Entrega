@@ -170,16 +170,19 @@ public class OpcaoFragment extends Fragment {
         else if(empresa.getFrota().getVeiculoMenorCusto().equals("carreta")) veiculoMenorCusto(carreta, 0);
         else if(empresa.getFrota().getVeiculoMenorCusto().equals("moto")) veiculoMenorCusto(moto, 0);
         else if(empresa.getFrota().getVeiculoMenorCusto().equals("van")) veiculoMenorCusto(van, 0);
+        else veiculoInexistente(0);
 
         if(empresa.getFrota().getVeiculoMenorTempo().equals("carro")) veiculoMenorTempo(carro, 1);
         else if(empresa.getFrota().getVeiculoMenorTempo().equals("carreta")) veiculoMenorTempo(carreta, 1);
         else if(empresa.getFrota().getVeiculoMenorTempo().equals("moto")) veiculoMenorTempo(moto, 1);
         else if(empresa.getFrota().getVeiculoMenorTempo().equals("van")) veiculoMenorTempo(van, 1);
+        else veiculoInexistente(1);
 
         if(empresa.getFrota().getVeiculoMelhorCustoBeneficio().equals("carro")) veiculoMelhorCustoBeneficio(carro, 2);
         else if(empresa.getFrota().getVeiculoMelhorCustoBeneficio().equals("carreta")) veiculoMelhorCustoBeneficio(carreta, 2);
         else if(empresa.getFrota().getVeiculoMelhorCustoBeneficio().equals("moto")) veiculoMelhorCustoBeneficio(moto, 2);
         else if(empresa.getFrota().getVeiculoMelhorCustoBeneficio().equals("van")) veiculoMelhorCustoBeneficio(van, 2);
+        else veiculoInexistente(2);
 
     }
 
@@ -208,6 +211,29 @@ public class OpcaoFragment extends Fragment {
         custoMelhorCustoBeneficio.setText(veiculo.get(3));
         tempoMelhorCustoBeneficio.setText(veiculo.get(4));
         custoLucroMelhorCustoBeneficio.setText(veiculo.get(5));
+
+    }
+
+    public void veiculoInexistente(int tipo){
+
+        if(tipo == 0){
+            tipoMenorCusto.setText("nenhum");
+            custoMenorCusto.setText("nenhum");
+            tempoMenorCusto.setText("nenhum");
+            custoLucroMenorCusto.setText("nenhum");
+        }
+        else if(tipo == 1){
+            tipoMenorTempo.setText("nenhum");
+            custoMenorTempo.setText("nenhum");
+            tempoMenorTempo.setText("nenhum");
+            custoLucroMenorTempo.setText("nenhum");
+        }
+        else if(tipo == 2){
+            tipoMelhorCustoBeneficio.setText("nenhum");
+            custoMelhorCustoBeneficio.setText("nenhum");
+            tempoMelhorCustoBeneficio.setText("nenhum");
+            custoLucroMelhorCustoBeneficio.setText("nenhum");
+        }
 
     }
 

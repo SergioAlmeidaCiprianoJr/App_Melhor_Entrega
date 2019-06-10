@@ -63,7 +63,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Custo"
+            android:text="Custo(R$)"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/guideline13"
             app:layout_constraintTop_toBottomOf="@+id/textView11" />
@@ -80,7 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Tempo"
+            android:text="Tempo(h)"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/guideline14"
             app:layout_constraintTop_toBottomOf="@+id/textView11" />
@@ -97,7 +97,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Custo+Lucro"
+            android:text="Custo+Lucro(R$)"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/guideline15"
             app:layout_constraintTop_toBottomOf="@+id/textView11" />
@@ -127,7 +127,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Custo"
+            android:text="Custo(R$)"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/guideline13"
             app:layout_constraintTop_toBottomOf="@+id/textView16" />
@@ -137,7 +137,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Tempo"
+            android:text="Tempo(h)"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/guideline14"
             app:layout_constraintTop_toBottomOf="@+id/textView16" />
@@ -147,7 +147,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Custo+Lucro"
+            android:text="Custo+Lucro(R$)"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/guideline15"
             app:layout_constraintTop_toBottomOf="@+id/textView16" />
@@ -187,7 +187,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Tempo"
+            android:text="Tempo(h)"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/guideline14"
             app:layout_constraintTop_toBottomOf="@+id/textView21" />
@@ -197,7 +197,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Custo+Lucro"
+            android:text="Custo+Lucro(R$)"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/guideline15"
             app:layout_constraintTop_toBottomOf="@+id/textView21" />
