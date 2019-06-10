@@ -138,6 +138,9 @@ public class Empresa {
         return numeroVans;
     }
 
+    public ArrayList<Veiculos> getVeiculosRealizandoEntregas() {
+        return veiculosRealizandoEntregas;
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void realizaEntrega(double carga, double distancia, double tempoMaximo){
@@ -159,6 +162,6 @@ public class Empresa {
     }
 
     public void confirmaEntrega(String veiculoEscolhido){
-        veiculosRealizandoEntregas.add(frota.ficaIndisponivel(veiculoEscolhido));
+        veiculosRealizandoEntregas.add(frota.ficaIndisponivel(veiculoEscolhido, carga));
     }
 }

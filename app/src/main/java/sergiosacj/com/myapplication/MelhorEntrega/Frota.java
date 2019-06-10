@@ -83,12 +83,13 @@ public class Frota {
         }
     }
 
-    public Veiculos ficaIndisponivel(String veiculoEscolhido){
+    public Veiculos ficaIndisponivel(String veiculoEscolhido, double carga){
         Veiculos veiculo = new Veiculos();
         for(int i = 0; i < frota.size(); i++){
             veiculo = frota.get(i);
             if(veiculo.getTipo().equals(veiculoEscolhido) && veiculo.getEstado().equals("disponivel")) {
                 frota.get(i).setEstado("indisponivel");
+                veiculo.setCargaAtual(carga);
                 return veiculo;
             }
         }

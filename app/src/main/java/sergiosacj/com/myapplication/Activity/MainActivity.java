@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements ComunicaFragments
         buttonEntrega = findViewById(R.id.buttonEntregar);
         buttonInstrucoes = findViewById(R.id.buttonInstrucoes);
         iniciaInstrucoesFragment();
+        validaArquivo();
 
         buttonCadastro.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,7 +84,6 @@ public class MainActivity extends AppCompatActivity implements ComunicaFragments
             }
         });
 
-        validaArquivo();
     }
 
 
@@ -114,7 +114,6 @@ public class MainActivity extends AppCompatActivity implements ComunicaFragments
         if(!checkEmpty.isEmpty()) {
             empresa.realizaEntrega(pesoCarga, distancia, tempoMaximo);
             if(!empresa.entregaImpossivel()){
-                enviaDadosOpcoes();
                 iniciaOpcaoFragment();
             }
         }
@@ -135,6 +134,11 @@ public class MainActivity extends AppCompatActivity implements ComunicaFragments
     @Override
     public void enviaDadosOpcoes() {
         opcaoFragment.recebeDados(empresa);
+    }
+
+    @Override
+    public void enviaDadosDesocupa() {
+        desocupaFragment.recebeDados(empresa);
     }
 
     @Override
@@ -163,12 +167,14 @@ public class MainActivity extends AppCompatActivity implements ComunicaFragments
     }
 
     public void iniciaOpcaoFragment(){
+        enviaDadosOpcoes();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction().replace(R.id.frameCadastro, opcaoFragment);
         transaction.commit();
     }
 
     public void iniciaDesocupaFragment(){
         defineCorButton("buttonDesocupa");
+        enviaDadosDesocupa();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction().replace(R.id.frameCadastro, desocupaFragment);
         transaction.commit();
     }
@@ -201,7 +207,7 @@ public class MainActivity extends AppCompatActivity implements ComunicaFragments
             porcentagemLucro = Double.parseDouble(Objects.requireNonNull(preferences.getString("porcentagemLucro", "")));
 
         }
-        
+
         numeroCarretas = preferences.getInt("numeroCarretas", 0);
 
         numeroCarros = preferences.getInt("numeroCarros", 0);
