@@ -198,10 +198,9 @@ public class Frota {
             else if (custo.get(0) == custoCarreta) setVeiculoMenorCusto("carreta");
             else setVeiculoMenorCusto("van");
 
-            if (custoBeneficio.get(0) == custoCarro) setVeiculoMelhorCustoBeneficio("carro");
-            else if (custoBeneficio.get(0) == custoMoto) setVeiculoMelhorCustoBeneficio("moto");
-            else if (custoBeneficio.get(0) == custoCarreta)
-                setVeiculoMelhorCustoBeneficio("carreta");
+            if (custoBeneficio.get(0) == custoCarro/tempoCarro) setVeiculoMelhorCustoBeneficio("carro");
+            else if (custoBeneficio.get(0) == custoMoto/tempoMoto) setVeiculoMelhorCustoBeneficio("moto");
+            else if (custoBeneficio.get(0) == custoCarreta/tempoCarreta) setVeiculoMelhorCustoBeneficio("carreta");
             else setVeiculoMelhorCustoBeneficio("van");
 
             setValorMenorTempo(tempo.get(0));

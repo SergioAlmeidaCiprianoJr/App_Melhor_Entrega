@@ -88,21 +88,21 @@ public class OpcaoFragment extends Fragment {
         escolheCusto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                comunicaFragments.veiculoEscolhido(tipoMenorCusto.getText().toString());
+                comunicaFragments.veiculoEscolhido(empresa.getFrota().getVeiculoMenorCusto());
             }
         });
 
         escolheTempo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                comunicaFragments.veiculoEscolhido(tempoMenorTempo.getText().toString());
+                comunicaFragments.veiculoEscolhido(empresa.getFrota().getVeiculoMenorTempo());
             }
         });
 
         escolheCustoBeneficio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                comunicaFragments.veiculoEscolhido(tipoMelhorCustoBeneficio.getText().toString());
+                comunicaFragments.veiculoEscolhido(empresa.getFrota().getVeiculoMelhorCustoBeneficio());
             }
         });
 
