@@ -97,7 +97,6 @@ public class Veiculos {
     }
 
     public double calculaLucro(double porcentagemLucro, double distancia){
-        double custo = calculaCusto(distancia);
-        return calculaCusto(distancia)+calculaCusto(distancia)*porcentagemLucro/100;
+        return calculaCusto(distancia)+(calculaCusto(distancia)*porcentagemLucro/100);
     }
 }

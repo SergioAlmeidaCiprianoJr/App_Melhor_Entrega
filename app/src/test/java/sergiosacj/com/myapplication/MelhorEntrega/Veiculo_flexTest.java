@@ -52,7 +52,7 @@ public class Veiculo_flexTest {
         carro.calculaRendimento();
         rendimentoGasolina = rendimentoGasolina - carga*taxaReducaoRendimentoGasolina;
         double esperado = distancia*4.4449/rendimentoGasolina;
-        assertEquals(esperado, carro.calculaCusto(distancia), 0);
+        assertEquals(esperado, carro.calculaCusto(distancia), 1);
     }
 
     @Test
@@ -62,7 +62,7 @@ public class Veiculo_flexTest {
         carro.calculaRendimento();
         rendimentoGasolina -= carga*taxaReducaoRendimentoGasolina;
         double esperado = distancia*4.4449/rendimentoGasolina;
-        assertEquals(esperado, carro.calculaCustoGasolina(distancia), 0);
+        assertEquals(esperado, carro.calculaCustoGasolina(distancia), 1);
     }
 
     @Test
@@ -72,7 +72,7 @@ public class Veiculo_flexTest {
         carro.calculaRendimento();
         rendimentoAlcool -= carga*taxaReducaoRendimentoAlcool;
         double esperado = distancia*3.499/rendimentoAlcool;
-        assertEquals(esperado, carro.calculaCustoGasolina(distancia), 0);
+        assertEquals(esperado, carro.calculaCustoGasolina(distancia), 1);
     }
 
     @Test
@@ -82,6 +82,7 @@ public class Veiculo_flexTest {
         carro.calculaRendimento();
         rendimentoGasolina = rendimentoGasolina - carga*taxaReducaoRendimentoGasolina;
         double esperado = distancia*4.4449/rendimentoGasolina;
-        assertEquals(esperado, carro.calculaLucro(porcentagemLucro, distancia), 0);
+        esperado += esperado*porcentagemLucro/100;
+        assertEquals(esperado, carro.calculaLucro(porcentagemLucro, distancia), 1);
     }
 }

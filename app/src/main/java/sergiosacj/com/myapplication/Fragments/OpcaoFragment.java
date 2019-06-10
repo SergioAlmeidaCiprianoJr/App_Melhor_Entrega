@@ -137,6 +137,7 @@ public class OpcaoFragment extends Fragment {
         carreta.add(empresa.getFrota().getVeiculoMenorCusto());
         carreta.add(empresa.getFrota().getVeiculoMenorTempo());
         carreta.add(empresa.getFrota().getVeiculoMelhorCustoBeneficio());
+        calculaCarreta.calculaRendimento();
         carreta.add(String.valueOf(arredondar(calculaCarreta.calculaCusto(empresa.getDistancia()))));
         carreta.add(String.valueOf(arredondar(calculaCarreta.calculaTempo(empresa.getDistancia()))));
         carreta.add(String.valueOf(arredondar(calculaCarreta.calculaLucro(empresa.getPorcentagemLucro(), empresa.getDistancia()))));
@@ -144,6 +145,7 @@ public class OpcaoFragment extends Fragment {
         carro.add(empresa.getFrota().getVeiculoMenorCusto());
         carro.add(empresa.getFrota().getVeiculoMenorTempo());
         carro.add(empresa.getFrota().getVeiculoMelhorCustoBeneficio());
+        calculaCarro.calculaRendimento();
         carro.add(String.valueOf(arredondar(calculaCarro.calculaCusto(empresa.getDistancia()))));
         carro.add(String.valueOf(arredondar(calculaCarro.calculaTempo(empresa.getDistancia()))));
         carro.add(String.valueOf(arredondar(calculaCarro.calculaLucro(empresa.getPorcentagemLucro(), empresa.getDistancia()))));
@@ -151,12 +153,14 @@ public class OpcaoFragment extends Fragment {
         moto.add(empresa.getFrota().getVeiculoMenorCusto());
         moto.add(empresa.getFrota().getVeiculoMenorTempo());
         moto.add(empresa.getFrota().getVeiculoMelhorCustoBeneficio());
+        calculaMoto.calculaRendimento();
         moto.add(String.valueOf(arredondar(calculaMoto.calculaCusto(empresa.getDistancia()))));
         moto.add(String.valueOf(arredondar(calculaMoto.calculaTempo(empresa.getDistancia()))));
         moto.add(String.valueOf(arredondar(calculaMoto.calculaLucro(empresa.getPorcentagemLucro(), empresa.getDistancia()))));
 
         van.add(empresa.getFrota().getVeiculoMenorCusto());
         van.add(empresa.getFrota().getVeiculoMenorTempo());
+        calculaVan.calculaRendimento();
         van.add(empresa.getFrota().getVeiculoMelhorCustoBeneficio());
         van.add(String.valueOf(arredondar(calculaVan.calculaCusto(empresa.getDistancia()))));
         van.add(String.valueOf(arredondar(calculaVan.calculaTempo(empresa.getDistancia()))));

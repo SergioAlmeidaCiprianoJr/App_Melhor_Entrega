@@ -43,6 +43,13 @@ public class Veiculo_flex extends Veiculos {
         this.taxaReducaoRendimentoGasolina = taxaReducaoRendimentoGasolina;
     }
 
+    @Override
+    public void calculaRendimento() {
+        super.calculaRendimento();
+        calculaRendimentoGasolina();
+        calculaRendimentoAlcool();
+    }
+
     public void calculaRendimentoGasolina(){
         setRendimentoGasolina(getRendimentoGasolina() - getCargaAtual()*getTaxaReducaoRendimentoGasolina());
     }
@@ -54,22 +61,15 @@ public class Veiculo_flex extends Veiculos {
     @Override
     public double calculaCusto(double distancia) {
         super.calculaCusto(distancia);
-        double custoGasolina = calculaCustoGasolina(distancia), custoAlccol = calculaCustoAlcool(distancia);
-        if (custoAlccol>custoGasolina){
-            return custoGasolina;
-        }
-        else{
-            return custoAlccol;
-        }
+        double custoGasolina = calculaCustoGasolina(distancia), custoAlcool = calculaCustoAlcool(distancia);
+        return custoAlcool>custoGasolina ? custoGasolina : custoAlcool;
     }
 
     public double calculaCustoGasolina(double distancia) {
-        calculaRendimentoGasolina();
         return (distancia/getRendimentoGasolina())*GASOLINA;
     }
 
     public double calculaCustoAlcool(double distancia) {
-        calculaRendimentoAlcool();
         return (distancia/getRendimentoAlcool())*ALCOOL;
     }
 
@@ -79,4 +79,5 @@ public class Veiculo_flex extends Veiculos {
         double custo = calculaCusto(distancia);
         return custo+(custo*porcentagemLucro/100);
     }
+
 }
