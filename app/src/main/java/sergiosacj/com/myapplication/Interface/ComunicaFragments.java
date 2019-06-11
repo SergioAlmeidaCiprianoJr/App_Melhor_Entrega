@@ -12,5 +12,7 @@ public interface ComunicaFragments {
 
     void enviaDadosDesocupa();
 
-    void veiculoEscolhido(String veiculoEscolhido);
+    void escolheVeiculo(String veiculoEscolhido);
+
+    void retiraVeiculo(String veiculoRetirado, int posicao);
 }

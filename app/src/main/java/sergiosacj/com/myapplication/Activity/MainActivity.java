@@ -142,8 +142,14 @@ public class MainActivity extends AppCompatActivity implements ComunicaFragments
     }
 
     @Override
-    public void veiculoEscolhido(String veiculoEscolhido) {
+    public void escolheVeiculo(String veiculoEscolhido) {
         empresa.confirmaEntrega(veiculoEscolhido);
+        iniciaDesocupaFragment();
+    }
+
+    @Override
+    public void retiraVeiculo(String veiculoRetirado, int posicao) {
+        empresa.removeEntrega(veiculoRetirado, posicao);
         iniciaDesocupaFragment();
     }
 

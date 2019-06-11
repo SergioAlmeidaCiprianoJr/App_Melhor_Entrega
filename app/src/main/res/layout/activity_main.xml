@@ -77,13 +77,32 @@
         app:layout_constraintStart_toEndOf="@+id/buttonCadastro"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <FrameLayout
-        android:id="@+id/frameCadastro"
-        android:layout_width="395dp"
-        android:layout_height="667dp"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="658dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonCadastro">
-    </FrameLayout>
+        app:layout_constraintTop_toBottomOf="@+id/buttonEntregar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/frameCadastro"
+                android:layout_width="match_parent"
+                android:layout_height="658dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/buttonEntregar"></FrameLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
 </android.support.constraint.ConstraintLayout>

@@ -162,6 +162,11 @@ public class Empresa {
     }
 
     public void confirmaEntrega(String veiculoEscolhido){
-        veiculosRealizandoEntregas.add(frota.ficaIndisponivel(veiculoEscolhido, carga));
+        veiculosRealizandoEntregas.add(frota.ficaIndisponivel(veiculoEscolhido, carga, distancia, tempoMaximo));
+    }
+
+    public void removeEntrega(String veiculoRetirado, int posicao){
+        veiculosRealizandoEntregas.remove(posicao);
+        frota.ficaDisponivel(veiculoRetirado);
     }
 }

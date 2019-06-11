@@ -7,7 +7,7 @@ public class Veiculos {
     private String combustivel;
     private double rendimento;
     private double cargaSuportada;
-    private double cargaAtual;
+    private double cargaAtual, tempoEntregaAtual, distanciaEntregaAtual;
     private double velocidadeMedia;
     private double taxaReducaoRendimento;
     protected final double GASOLINA = 4.4449;
@@ -65,6 +65,22 @@ public class Veiculos {
 
     public void setCargaAtual(double cargaAtual) {
         this.cargaAtual = cargaAtual;
+    }
+
+    public double getTempoEntregaAtual() {
+        return tempoEntregaAtual;
+    }
+
+    public void setTempoEntregaAtual(double tempoEntregaAtual) {
+        this.tempoEntregaAtual = tempoEntregaAtual;
+    }
+
+    public double getDistanciaEntregaAtual() {
+        return distanciaEntregaAtual;
+    }
+
+    public void setDistanciaEntregaAtual(double distanciaEntregaAtual) {
+        this.distanciaEntregaAtual = distanciaEntregaAtual;
     }
 
     public double getVelocidadeMedia() {
