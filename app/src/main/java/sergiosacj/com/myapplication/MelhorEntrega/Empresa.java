@@ -167,6 +167,9 @@ public class Empresa {
 
     public void removeEntrega(Veiculos veiculoRetirado, int posicao){
         veiculosRealizandoEntregas.remove(posicao);
+        veiculoRetirado.setCargaAtual(0);
+        veiculoRetirado.setDistanciaEntregaAtual(0);
+        veiculoRetirado.setTempoEntregaAtual(0);
         frota.ficaDisponivel(veiculoRetirado);
     }
 }

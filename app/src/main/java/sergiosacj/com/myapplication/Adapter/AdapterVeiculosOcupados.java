@@ -32,9 +32,9 @@ public class AdapterVeiculosOcupados extends RecyclerView.Adapter<AdapterVeiculo
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
 
         myViewHolder.nomeVeiculo.setText(veiculosRealizandoEntregas.get(i).getTipo());
-        myViewHolder.cargaAtualVeiculo.setText("Carga Atual: " + String.valueOf(veiculosRealizandoEntregas.get(i).getCargaAtual()));
-        myViewHolder.tempoEntregaAtual.setText("Tempo Entrega Atual: " + String.valueOf(veiculosRealizandoEntregas.get(i).getTempoEntregaAtual()));
-        myViewHolder.distanciaEntregaAtual.setText("Distância ENtrega Atual: " + String.valueOf(veiculosRealizandoEntregas.get(i).getDistanciaEntregaAtual()));
+        myViewHolder.cargaAtualVeiculo.setText("Carga Atual:  " + String.valueOf(veiculosRealizandoEntregas.get(i).getCargaAtual()));
+        myViewHolder.tempoEntregaAtual.setText("Tempo Entrega Atual:  " + String.valueOf(veiculosRealizandoEntregas.get(i).getTempoEntregaAtual()));
+        myViewHolder.distanciaEntregaAtual.setText("Distância Entrega Atual:  " + String.valueOf(veiculosRealizandoEntregas.get(i).getDistanciaEntregaAtual()));
 
     }
 
