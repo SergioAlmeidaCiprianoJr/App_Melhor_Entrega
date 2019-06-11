@@ -2,7 +2,8 @@
 
 Este projeto consiste em fazer um software com interface gráfica que cadastre uma frota de veículos e mostre as melhores escolhas de transporte. Existem várias restrições quanto a maneira de realizar as entregas fazendo com que a parte mais desafiadora seja a interface e a permanência de dados. 
 
-
+<img src="https://i.imgur.com/k319Mx8.jpg">
+<img src="https://i.imgur.com/OVem7a1.jpg">
 
 ## Detalhes do Projeto
 
