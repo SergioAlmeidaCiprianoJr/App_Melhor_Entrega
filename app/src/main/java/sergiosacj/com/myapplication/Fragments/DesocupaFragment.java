@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import sergiosacj.com.myapplication.Adapter.AdapterVeiculosOcupados;
 import sergiosacj.com.myapplication.Interface.ComunicaFragments;
@@ -54,6 +55,9 @@ public class DesocupaFragment extends Fragment {
                         new RecyclerItemClickListener.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, int position) {
+                                Toast.makeText(getContext(),
+                                        "entrega finalizada",
+                                        Toast.LENGTH_SHORT).show();
                                 comunicaFragments.retiraVeiculo(empresa.getVeiculosRealizandoEntregas().get(position), position);
                             }
 

@@ -110,14 +110,22 @@ public class MainActivity extends AppCompatActivity implements ComunicaFragments
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void realizaEntrega(double pesoCarga, double distancia, double tempoMaximo) {
-        ArrayList<Veiculos> checkEmpty = empresa.getFrota().getFrota();
-        if(!checkEmpty.isEmpty()) {
-            empresa.realizaEntrega(pesoCarga, distancia, tempoMaximo);
-            if(!empresa.entregaImpossivel()){
-                iniciaOpcaoFragment();
+        empresa.realizaEntrega(pesoCarga, distancia, tempoMaximo);
+        if(!empresa.entregaImpossivel()){
+            Toast.makeText(this, "Enviado", Toast.LENGTH_SHORT).show();
+            iniciaOpcaoFragment();
+        }
+        else{
+            if(empresa.isEntregaImpossivelDisponbilidade()){
+                Toast.makeText(this, "Sem veiculos", Toast.LENGTH_SHORT).show();
+            }
+            else if(empresa.isEntregaImpossivelTamanho()){
+                Toast.makeText(this, "Sem veiculos que suportem essa carga", Toast.LENGTH_SHORT).show();
+            }
+            else if(empresa.isEntregaImpossivelTempo()){
+                Toast.makeText(this, "Sem veiculos rápidos o suficiente", Toast.LENGTH_SHORT).show();
             }
         }
-        else Toast.makeText(this, "Sem veiculos", Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -150,7 +158,7 @@ public class MainActivity extends AppCompatActivity implements ComunicaFragments
     @Override
     public void retiraVeiculo(Veiculos veiculoRetirado, int posicao) {
         empresa.removeEntrega(veiculoRetirado, posicao);
-        iniciaInstrucoesFragment();
+        iniciaEntregaFragment();
     }
 
     public void iniciaInstrucoesFragment(){

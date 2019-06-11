@@ -49,7 +49,6 @@ public class EntregaFragment extends Fragment {
                             Double.parseDouble(distancia.getText().toString()),
                             Double.parseDouble(tempoMaximo.getText().toString())
                     );
-                    Toast.makeText(getContext(), "Enviado", Toast.LENGTH_SHORT).show();
                 }
                 else Toast.makeText(getContext(), "Preencha os campos primeiro", Toast.LENGTH_SHORT).show();
             }
