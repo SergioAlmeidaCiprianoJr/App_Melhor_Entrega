@@ -1,5 +1,7 @@
 package sergiosacj.com.myapplication.Interface;
 
+import sergiosacj.com.myapplication.MelhorEntrega.Veiculos;
+
 public interface ComunicaFragments {
 
     void atualizaEmpresa(Double porcentagemLucro, int numeroCarros, int numeroCarretas, int numeroMotos, int numeroVans);
@@ -14,5 +16,5 @@ public interface ComunicaFragments {
 
     void escolheVeiculo(String veiculoEscolhido);
 
-    void retiraVeiculo(String veiculoRetirado, int posicao);
+    void retiraVeiculo(Veiculos veiculoRetirado, int posicao);
 }

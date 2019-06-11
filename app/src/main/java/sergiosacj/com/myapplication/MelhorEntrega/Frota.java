@@ -88,7 +88,7 @@ public class Frota {
         for(int i = 0; i < frota.size(); i++){
             veiculo = frota.get(i);
             if(veiculo.getTipo().equals(veiculoEscolhido) && veiculo.getEstado().equals("disponivel")) {
-                frota.get(i).setEstado("indisponivel");
+                removeFrota(veiculo);
                 veiculo.setCargaAtual(carga);
                 veiculo.setDistanciaEntregaAtual(distancia);
                 veiculo.setTempoEntregaAtual(tempoMaximo);
@@ -98,15 +98,8 @@ public class Frota {
         return veiculo;
     }
 
-    public void ficaDisponivel(String veiculoEscolhido){
-        for(int i = 0; i < frota.size(); i++){
-            Veiculos veiculo;
-            veiculo = frota.get(i);
-            if(veiculo.getTipo().equals(veiculoEscolhido) && veiculo.getEstado().equals("indisponivel")) {
-                frota.get(i).setEstado("disponivel");
-                break;
-            }
-        }
+    public void ficaDisponivel(Veiculos veiculoEscolhido){
+        adicionaFrota(veiculoEscolhido);
     }
 
     public void adicionaVeiculosDisponiveis(String tipoVeiculo){

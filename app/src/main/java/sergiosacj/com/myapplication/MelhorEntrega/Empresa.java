@@ -165,7 +165,7 @@ public class Empresa {
         veiculosRealizandoEntregas.add(frota.ficaIndisponivel(veiculoEscolhido, carga, distancia, tempoMaximo));
     }
 
-    public void removeEntrega(String veiculoRetirado, int posicao){
+    public void removeEntrega(Veiculos veiculoRetirado, int posicao){
         veiculosRealizandoEntregas.remove(posicao);
         frota.ficaDisponivel(veiculoRetirado);
     }
