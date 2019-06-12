@@ -7,11 +7,7 @@ public class Veiculo_flex extends Veiculos {
     private double taxaReducaoRendimentoAlcool;
     private double taxaReducaoRendimentoGasolina;
 
-    public Veiculo_flex(){
-        setCombustivel("flex");
-    }
-
-    public double getRendimentoAlcool() {
+        public double getRendimentoAlcool() {
         return rendimentoAlcool;
     }
 

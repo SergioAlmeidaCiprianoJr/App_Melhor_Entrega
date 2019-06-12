@@ -5,7 +5,6 @@ public class Carro extends Veiculo_flex {
     public Carro() {
         setTipo("carro");
         setEstado("disponivel");
-        setCombustivel("flex");
         setCargaAtual(0);
         setCargaSuportada(360);
         setVelocidadeMedia(100);

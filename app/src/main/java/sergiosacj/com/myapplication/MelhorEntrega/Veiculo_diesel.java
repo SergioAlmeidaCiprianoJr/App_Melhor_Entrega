@@ -4,10 +4,6 @@ public class Veiculo_diesel extends Veiculos {
 
     private double rendimentoDiesel;
 
-    public Veiculo_diesel(){
-        setCombustivel("diesel");
-    }
-
     public double getRendimentoDiesel() {
         return rendimentoDiesel;
     }

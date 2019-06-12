@@ -5,7 +5,6 @@ public class Van extends Veiculo_diesel {
     public Van() {
         setTipo("van");
         setEstado("disponivel");
-        setCombustivel("diesel");
         setRendimentoDiesel(10);
         setCargaAtual(0);
         setCargaSuportada(3500);

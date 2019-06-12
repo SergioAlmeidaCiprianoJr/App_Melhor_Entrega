@@ -5,7 +5,6 @@ public class Moto extends Veiculo_flex {
     public Moto() {
         setTipo("moto");
         setEstado("disponivel");
-        setCombustivel("flex");
         setCargaAtual(0);
         setCargaSuportada(50);
         setVelocidadeMedia(110);

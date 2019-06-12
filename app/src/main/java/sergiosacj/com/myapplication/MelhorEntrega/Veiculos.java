@@ -4,7 +4,6 @@ public class Veiculos {
 
     private String tipo;
     private String estado;
-    private String combustivel;
     private double rendimento;
     private double cargaSuportada;
     private double cargaAtual, tempoEntregaAtual, distanciaEntregaAtual;
@@ -33,14 +32,6 @@ public class Veiculos {
 
     public void setEstado(String estado) {
         this.estado = estado;
-    }
-
-    public String getCombustivel() {
-        return combustivel;
-    }
-
-    public void setCombustivel(String combustivel) {
-        this.combustivel = combustivel;
     }
 
     public double getRendimento() {

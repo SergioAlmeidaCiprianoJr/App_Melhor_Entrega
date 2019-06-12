@@ -13,7 +13,7 @@ public class Empresa {
     private int numeroMotos;
     private int numeroVans;
     private Double porcentagemLucro;
-    private Double carga, distancia, tempoMaximo;
+    private Double cargaEntrega, distanciaEntrega, tempoMaximoEntrega;
     private boolean entregaImpossivelTempo;
     private boolean entregaImpossivelDisponbilidade;
     private boolean entregaImpossivelTamanho;
@@ -111,15 +111,15 @@ public class Empresa {
     }
 
     public Double getCarga() {
-        return carga;
+        return cargaEntrega;
     }
 
     public Double getDistancia() {
-        return distancia;
+        return distanciaEntrega;
     }
 
     public Double getTempoMaximo() {
-        return tempoMaximo;
+        return tempoMaximoEntrega;
     }
 
     public int getNumeroCarros() {
@@ -156,9 +156,9 @@ public class Empresa {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void realizaEntrega(double carga, double distancia, double tempoMaximo){
-        this.carga = carga;
-        this.distancia = distancia;
-        this.tempoMaximo = tempoMaximo;
+        this.cargaEntrega = carga;
+        this.distanciaEntrega = distancia;
+        this.tempoMaximoEntrega = tempoMaximo;
         this.entregaImpossivelTempo = false;
         this.entregaImpossivelDisponbilidade = false;
         this.entregaImpossivelTamanho = false;
@@ -174,7 +174,7 @@ public class Empresa {
     }
 
     public void confirmaEntrega(String veiculoEscolhido){
-        veiculosRealizandoEntregas.add(frota.ficaIndisponivel(veiculoEscolhido, carga, distancia, tempoMaximo));
+        veiculosRealizandoEntregas.add(frota.ficaIndisponivel(veiculoEscolhido, cargaEntrega, distanciaEntrega, tempoMaximoEntrega));
     }
 
     public void removeEntrega(Veiculos veiculoRetirado, int posicao){
