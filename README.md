@@ -2,7 +2,7 @@
 
 Este projeto consiste em fazer um software com interface gráfica que cadastre uma frota de veículos e mostre as melhores escolhas de transporte. Existem várias restrições quanto a maneira de realizar as entregas fazendo com que a parte mais desafiadora seja a interface e a permanência de dados. 
 
-
+<img src="https://i.imgur.com/vMh3zPa.jpg">
 
 ## Detalhes do Projeto
 
@@ -10,10 +10,11 @@ O projeto podia ser feito tanto para desktop quanto para android. Optei por faze
 
 ## Principais aprendizados
 
-* Planejamento utilizando UML
-* Associação (utilizada na classe Empresa e Frota)
-* Ferramentas do android: activity, fragment, recycler view, SQLite, interface
-* Comunicação entre fragments
+* Planejamento e documentação utilizando UML
+* Associação (utilizada na classe Empresa e Frota, por exemplo)
+* Ferramentas do android: Activity, Fragment, RecyclerView, SharedPreferences
+* Comunicação entre fragments (utilizando interface)
+* Teste unitário: usado para achar erros na classe Veiculo_flex
 * Java
 
 ## Ferramentas utilizadas
@@ -24,7 +25,7 @@ O projeto podia ser feito tanto para desktop quanto para android. Optei por faze
 
 ## Instalação e execução do app
 
-
+Bem detalhado em [Developers]
 
 ## Créditos e Contatos
 
