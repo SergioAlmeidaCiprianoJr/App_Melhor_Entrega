@@ -25,7 +25,7 @@ O projeto podia ser feito tanto para desktop quanto para android. Optei por faze
 
 ## Instalação e execução do app
 
-Bem detalhado em [Developers]
+Bem detalhado em [Developers](https://developer.android.com/studio/run/emulator?hl=pt-br)
 
 ## Créditos e Contatos
 
