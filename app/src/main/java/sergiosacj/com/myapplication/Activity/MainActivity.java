@@ -114,15 +114,7 @@ public class MainActivity extends AppCompatActivity implements ComunicaFragments
             iniciaOpcaoFragment();
         }
         else{
-            if(empresa.isEntregaImpossivelDisponbilidade()){
-                Toast.makeText(this, "Sem veiculos", Toast.LENGTH_SHORT).show();
-            }
-            else if(empresa.isEntregaImpossivelTamanho()){
-                Toast.makeText(this, "Sem veiculos que suportem essa carga", Toast.LENGTH_SHORT).show();
-            }
-            else if(empresa.isEntregaImpossivelTempo()){
-                Toast.makeText(this, "Sem veiculos rápidos o suficiente", Toast.LENGTH_SHORT).show();
-            }
+            Toast.makeText(this, "Entrega Impossível", Toast.LENGTH_SHORT).show();
         }
     }
 
